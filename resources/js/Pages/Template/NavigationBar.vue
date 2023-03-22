@@ -6,11 +6,14 @@
       <i class="bx bx-menu text-dark" id="btn"></i>
     </div>
     <ul class="nav-list">
-      <li class="w-100">
-        <i class="bx bx-search"></i>
-        <input type="text" placeholder="Search...">
-            <span class="tooltip">Search</span>
-      </li>
+        <li>
+            <NavLink href="/">
+                <i class='bx bx-home'></i>
+                <span class="link_name">Home</span>
+            </NavLink>
+            <span class="tooltip">Home</span>
+        </li>
+
       <li>
         <NavLink href="/newsfeed">
             <i class='bx bx-news'></i>
@@ -19,14 +22,14 @@
         <span class="tooltip">Newsfeed</span>
       </li>
       <li>
-        <NavLink>
+        <NavLink  href="/generator">
             <i class='bx bx-food-menu'></i>
             <span class="link_name">Generator</span>
         </NavLink>
         <span class="tooltip">Generator</span>
       </li>
       <li>
-        <NavLink>
+        <NavLink href="/profile">
             <i class="bx bx-user"></i>
             <span class="link_name">Profile</span>
         </NavLink>
@@ -51,8 +54,49 @@
   </div>
 </template>
 
-<script setup>
+<script>
     import NavLink from './NavigationLink.vue'
+    import { ref, onMounted, nextTick  } from 'vue';
+    // import { myFunction } from '../../sideBar.js';
+    export default {
+        components: {
+            NavLink,
+        },
+        setup() {
+            const message = ref('Hello, world!');
+
+        },
+        mounted() {
+            let sidebar, closeBtn, leftNavBar, rightContent;
+
+            sidebar = document.querySelector(".sidebar");
+            closeBtn = document.querySelector("#btn");
+            leftNavBar = document.getElementById('left-navbar')
+            rightContent = document.getElementById('right-content')
+
+            closeBtn.addEventListener("click",function(){
+                sidebar.classList.toggle("open")
+                menuBtnChange()
+            })
+
+            function menuBtnChange(){
+                if(sidebar.classList.contains("open")){
+                    leftNavBar.classList.remove('left-navbar')
+                    leftNavBar.classList.add('expand-side-container')
+                    rightContent.classList.remove('content')
+                    rightContent.classList.add('expand-right-container')
+                    closeBtn.classList.replace("bx-menu","bx-menu-alt-right")
+                }else{
+                    leftNavBar.classList.remove('expand-side-container')
+                    rightContent.classList.add('content')
+                    rightContent.classList.remove('expand-right-container')
+                    leftNavBar.classList.add('left-navbar')
+                    closeBtn.classList.replace("bx-menu-alt-right","bx-menu")
+
+                }
+            }
+        },
+    }
 </script>
 
 <style scoped>
