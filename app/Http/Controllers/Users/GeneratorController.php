@@ -12,7 +12,7 @@ class GeneratorController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia('Users/Generator/Index');
     }
 
     /**

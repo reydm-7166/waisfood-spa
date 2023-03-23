@@ -3,9 +3,10 @@
 use App\Http\Controllers\Users\IndexController;
 
 use App\Http\Controllers\Users\GeneratorController;
+use App\Http\Controllers\Users\MessageController;
 use App\Http\Controllers\Users\ProfileController;
 use App\Http\Controllers\Users\NewsfeedController;
-
+use App\Http\Controllers\Users\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +32,13 @@ Route::prefix('profile')->group(function () {
 
 Route::prefix('generator')->group(function () {
     Route::resource('', GeneratorController::class);
+});
+
+Route::prefix('messages')->group(function () {
+    Route::resource('', MessageController::class);
+});
+
+Route::prefix('settings')->group(function () {
+    Route::resource('', SettingsController::class);
 });
 
