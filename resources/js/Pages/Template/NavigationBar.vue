@@ -57,7 +57,7 @@
 <script>
     import NavLink from './NavigationLink.vue'
     import { ref, onMounted, nextTick  } from 'vue';
-    // import { myFunction } from '../../sideBar.js';
+    import sideBar from '../../sideBar.js';
     export default {
         components: {
             NavLink,
@@ -67,35 +67,8 @@
 
         },
         mounted() {
-            let sidebar, closeBtn, leftNavBar, rightContent;
-
-            sidebar = document.querySelector(".sidebar");
-            closeBtn = document.querySelector("#btn");
-            leftNavBar = document.getElementById('left-navbar')
-            rightContent = document.getElementById('right-content')
-
-            closeBtn.addEventListener("click",function(){
-                sidebar.classList.toggle("open")
-                menuBtnChange()
-            })
-
-            function menuBtnChange(){
-                if(sidebar.classList.contains("open")){
-                    leftNavBar.classList.remove('left-navbar')
-                    leftNavBar.classList.add('expand-side-container')
-                    rightContent.classList.remove('content')
-                    rightContent.classList.add('expand-right-container')
-                    closeBtn.classList.replace("bx-menu","bx-menu-alt-right")
-                }else{
-                    leftNavBar.classList.remove('expand-side-container')
-                    rightContent.classList.add('content')
-                    rightContent.classList.remove('expand-right-container')
-                    leftNavBar.classList.add('left-navbar')
-                    closeBtn.classList.replace("bx-menu-alt-right","bx-menu")
-
-                }
-            }
-        },
+            sideBar()
+        }
     }
 </script>
 

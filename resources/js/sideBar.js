@@ -1,4 +1,5 @@
-const sidebar = document.querySelector(".sidebar");
+const sideBar = () => {
+    const sidebar = document.querySelector(".sidebar");
     const closeBtn = document.querySelector("#btn");
     const leftNavBar = document.getElementById('left-navbar')
     const rightContent = document.getElementById('right-content')
@@ -25,8 +26,7 @@ const sidebar = document.querySelector(".sidebar");
 
         }
     }
-
-module.exports = {
-    connection,
-    executeQuery,
 }
+
+
+export default sideBar;
