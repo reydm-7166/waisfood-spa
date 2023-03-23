@@ -56,7 +56,7 @@
 
 <script>
     import NavLink from './NavigationLink.vue'
-    import { ref, onMounted, nextTick  } from 'vue';
+    import { ref } from 'vue';
     import sideBar from '../../sideBar.js';
     export default {
         components: {
@@ -64,7 +64,6 @@
         },
         setup() {
             const message = ref('Hello, world!');
-
         },
         mounted() {
             sideBar()

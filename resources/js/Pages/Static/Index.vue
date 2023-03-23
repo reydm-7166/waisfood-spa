@@ -1,16 +1,13 @@
 <template>
-    <body id="container">
-        <Head title="WaisFood"/>
-        <SidebarLayout>
-            <Navbar></Navbar>
-        </SidebarLayout>
 
-        <RightSideLayout>
-            <div id="head" class="bg bg-secondary w-100 rounded p-2 text-center">
-                    <h1 class="font fw-bold">You are in index page!</h1>
-            </div>
-        </RightSideLayout>
-    </body>
+    <Head title="WaisFood"/>
+
+    <RightSideLayout>
+        <div id="head" class="bg bg-secondary w-100 rounded p-2 text-center">
+                <h1 class="font fw-bold">You are in index page!</h1>
+        </div>
+    </RightSideLayout>
+
 
 </template>
 

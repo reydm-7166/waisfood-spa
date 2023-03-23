@@ -5,7 +5,6 @@ const sideBar = () => {
     const rightContent = document.getElementById('right-content')
 
     closeBtn.addEventListener("click",function(){
-        console.log("working button")
         sidebar.classList.toggle("open")
         menuBtnChange()
     })
