@@ -1,8 +1,11 @@
 <template>
-    <SidebarLayout>
-        <Navbar></Navbar>
-    </SidebarLayout>
-    <slot/>
+    <div id="main-container">
+        <SidebarLayout >
+            <Navbar></Navbar>
+        </SidebarLayout>
+        <slot/>
+    </div>
+
 </template>
 
 <script setup>
@@ -12,5 +15,4 @@
 </script>
 
 <style scoped>
-
 </style>

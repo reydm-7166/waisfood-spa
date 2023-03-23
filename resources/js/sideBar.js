@@ -1,8 +1,6 @@
 const sideBar = () => {
-    const sidebar = document.querySelector(".sidebar");
-    const closeBtn = document.querySelector("#btn");
-    const leftNavBar = document.getElementById('left-navbar')
-    const rightContent = document.getElementById('right-content')
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
 
     closeBtn.addEventListener("click",function(){
         sidebar.classList.toggle("open")
@@ -10,38 +8,31 @@ const sideBar = () => {
     })
 
     function menuBtnChange(){
-        if(sidebar.classList.contains("open")){
-            leftNavBar.classList.remove('left-navbar')
-            leftNavBar.classList.add('expand-side-container')
-            rightContent.classList.remove('content')
-            rightContent.classList.add('expand-right-container')
-            closeBtn.classList.replace("bx-menu","bx-menu-alt-right")
-        }else{
-            leftNavBar.classList.remove('expand-side-container')
-            rightContent.classList.add('content')
-            rightContent.classList.remove('expand-right-container')
-            leftNavBar.classList.add('left-navbar')
-            closeBtn.classList.replace("bx-menu-alt-right","bx-menu")
-
-        }
+        removeWidth();
     }
-
-
 }
 
 const removeWidth = () => {
-    const leftNavBar = document.getElementById('left-navbar')
-    const rightContent = document.getElementById('right-content')
+    let sidebar = document.querySelector(".sidebar");
+    let rightContent = document.getElementById('right-content')
+    let leftNavBar = document.getElementById('left-navbar')
+    let closeBtn = document.querySelector("#btn");
 
-    if(leftNavBar.classList.contains('left-navbar')){
+    if(sidebar.classList.contains("open")){
+        rightContent.classList.add('expand-right-container')
+        rightContent.classList.remove('content')
+        leftNavBar.classList.add('expand-side-container')
+        leftNavBar.classList.remove('left-navbar')
+        closeBtn.classList.replace("bx-menu","bx-menu-alt-right")
+    } else {
         rightContent.classList.add('content')
+        leftNavBar.classList.remove('expand-side-container')
         rightContent.classList.remove('expand-right-container')
-        return;
+        leftNavBar.classList.add('left-navbar')
+        closeBtn.classList.replace("bx-menu-alt-right","bx-menu")
     }
 
-    rightContent.classList.remove('content')
-    rightContent.classList.add('expand-right-container')
-    return;
+
 }
 
 
