@@ -6,11 +6,14 @@
       <i class="bx bx-menu text-dark" id="btn"></i>
     </div>
     <ul class="nav-list">
-      <li class="w-100">
-        <i class="bx bx-search"></i>
-        <input type="text" placeholder="Search...">
-            <span class="tooltip">Search</span>
-      </li>
+        <li>
+            <NavLink href="/">
+                <i class='bx bx-home'></i>
+                <span class="link_name">Home</span>
+            </NavLink>
+            <span class="tooltip">Home</span>
+        </li>
+
       <li>
         <NavLink href="/newsfeed">
             <i class='bx bx-news'></i>
@@ -19,14 +22,14 @@
         <span class="tooltip">Newsfeed</span>
       </li>
       <li>
-        <NavLink>
+        <NavLink  href="/generator">
             <i class='bx bx-food-menu'></i>
             <span class="link_name">Generator</span>
         </NavLink>
         <span class="tooltip">Generator</span>
       </li>
       <li>
-        <NavLink>
+        <NavLink href="/profile">
             <i class="bx bx-user"></i>
             <span class="link_name">Profile</span>
         </NavLink>
@@ -51,8 +54,22 @@
   </div>
 </template>
 
-<script setup>
+<script>
     import NavLink from './NavigationLink.vue'
+    import { ref, onMounted, nextTick  } from 'vue';
+    import sideBar from '../../sideBar.js';
+    export default {
+        components: {
+            NavLink,
+        },
+        setup() {
+            const message = ref('Hello, world!');
+
+        },
+        mounted() {
+            sideBar()
+        }
+    }
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-    <Link class="">
+    <Link href="">
         <slot/>
     </Link>
 </template>
@@ -8,6 +8,6 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
