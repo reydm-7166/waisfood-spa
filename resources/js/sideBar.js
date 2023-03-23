@@ -25,7 +25,24 @@ const sideBar = () => {
 
         }
     }
+
+
+}
+
+const removeWidth = () => {
+    const leftNavBar = document.getElementById('left-navbar')
+    const rightContent = document.getElementById('right-content')
+
+    if(leftNavBar.classList.contains('left-navbar')){
+        rightContent.classList.add('content')
+        rightContent.classList.remove('expand-right-container')
+        return;
+    }
+
+    rightContent.classList.remove('content')
+    rightContent.classList.add('expand-right-container')
+    return;
 }
 
 
-export default sideBar;
+export { sideBar, removeWidth };

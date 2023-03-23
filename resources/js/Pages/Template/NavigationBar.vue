@@ -57,7 +57,7 @@
 <script>
     import NavLink from './NavigationLink.vue'
     import { ref } from 'vue';
-    import sideBar from '../../sideBar.js';
+    import { sideBar, removeWidth } from '../../sideBar.js';
     export default {
         components: {
             NavLink,

@@ -15,12 +15,15 @@
     import Layout from '../../Template/Layout.vue';
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import Navbar from '../../Template/NavigationBar.vue'
-
+    import { sideBar, removeWidth } from '../../../sideBar';
     export default {
         layout: Layout,
         components: {
             Navbar,
             RightSideLayout,
+        },
+        mounted() {
+            removeWidth()
         }
     }
 </script>
