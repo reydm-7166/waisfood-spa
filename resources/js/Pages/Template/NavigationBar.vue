@@ -36,7 +36,7 @@
         <span class="tooltip">Profile</span>
       </li>
       <li>
-        <NavLink>
+        <NavLink href="/messages">
             <i class="bx bx-chat"></i>
             <span class="link_name">Message</span>
         </NavLink>
@@ -44,7 +44,7 @@
       </li>
 
       <li>
-        <NavLink>
+        <NavLink href="/settings">
             <i class="bx bx-cog"></i>
             <span class="link_name">Settings</span>
         </NavLink>
