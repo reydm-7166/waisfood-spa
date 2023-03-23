@@ -1,16 +1,13 @@
 <template>
-    <body id="container">
-        <Head title="WaisFood"/>
-        <SidebarLayout>
-            <Navbar></Navbar>
-        </SidebarLayout>
 
-        <RightSideLayout>
-            <div id="head" class="bg bg-secondary w-100 rounded p-2 text-center">
-                    <h1 class="font fw-bold">You are in index page!</h1>
-            </div>
-        </RightSideLayout>
-    </body>
+    <Head title="WaisFood"/>
+
+    <RightSideLayout>
+        <div id="head" class="bg bg-secondary w-100 rounded p-2 text-center">
+            <h1 class="font fw-bold">You are in index page!</h1>
+        </div>
+    </RightSideLayout>
+
 
 </template>
 
@@ -18,6 +15,8 @@
     import Layout from '../Template/Layout.vue';
     import SidebarLayout from '../Template/SidebarLayout.vue';
     import RightSideLayout from '../Template/RightSideLayout.vue';
+
+    import { sideBar, removeWidth } from '../../sideBar';
 
     import Navbar from '../Template/NavigationBar.vue'
     export default {
@@ -27,6 +26,9 @@
             Navbar,
             SidebarLayout,
             RightSideLayout,
+        },
+        mounted() {
+            removeWidth()
         }
     }
 </script>
