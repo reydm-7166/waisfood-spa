@@ -18,9 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'unique_id',
+        'firstname',
+        'lastname',
+        'age',
         'email',
         'password',
+        'username',
     ];
 
     /**
@@ -41,4 +45,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function registerUser(Array $user) {
+        if($this->create([
+            'firstname' => $user['firstname'],
+            'email' => $user['email'],
+        ]))
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
 }

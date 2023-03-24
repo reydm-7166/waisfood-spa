@@ -3,12 +3,14 @@
     <Head title="WaisFood"/>
 
     <RightSideLayout>
-        <div id="head" class="bg bg-secondary w-100 rounded p-2 text-center">
-            <h1 class="font fw-bold">You are in index page!</h1>
-        </div>
-        <div id="body" class="w-100 mt-3">
-            <Link href="/register" class="btn btn-primary p-1 fs-5 mx-2">Register</Link>
-            <Link href="/login" class="btn btn-success p-1 fs-5 mx-2">Login</Link>
+        <div class="bg bg-warning fs-4 p-3 d-inline-block align-top content" id="right-content">
+            <div id="head" class="bg bg-secondary w-100 rounded p-2 text-center">
+                <h1 class="font fw-bold">You are in index page!</h1>
+            </div>
+            <div id="body" class="w-100 mt-3">
+                <Link href="/register" class="btn btn-primary p-1 fs-5 mx-2 font">Register</Link>
+                <Link href="/login" class="btn btn-success p-1 fs-5 mx-2 font">Login</Link>
+            </div>
         </div>
     </RightSideLayout>
 
@@ -38,8 +40,13 @@
 </script>
 
 <style scoped>
-    #body {
-        min-height: 90vh;
-        height: fit-content;
+    .content {
+        transition: all 0.5s ease;
+        width: 95%;
     }
+    #right-content {
+        height: fit-content;
+        min-height: 100vh;
+    }
+
 </style>

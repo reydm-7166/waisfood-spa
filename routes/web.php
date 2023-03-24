@@ -27,6 +27,8 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 
+Route::post('/register/store', [RegisterController::class, 'store'])->name('register.store');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 
 

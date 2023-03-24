@@ -1,8 +1,6 @@
-.font {
-    font-family: 'Poppins', sans-serif;
-}
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 
 :root{
   --color-default:#004f83;
@@ -12,6 +10,13 @@
   --color-light:#e0e0e0;
 }
 
+.font {
+    font-family: 'Poppins', sans-serif;
+}
+.font-2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
 
 *{
   padding: 0%;
