@@ -4,12 +4,8 @@ const sideBar = () => {
 
     closeBtn.addEventListener("click",function(){
         sidebar.classList.toggle("open")
-        menuBtnChange()
-    })
-
-    function menuBtnChange(){
         removeWidth();
-    }
+    })
 }
 
 const removeWidth = () => {
