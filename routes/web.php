@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Users\IndexController;
 
 use App\Http\Controllers\Users\GeneratorController;
@@ -21,6 +23,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+
+
+
 
 Route::prefix('newsfeed')->group(function () {
     Route::resource('', NewsfeedController::class);

@@ -1,6 +1,6 @@
 <template>
     <div id="main-container">
-        <SidebarLayout >
+        <SidebarLayout>
             <Navbar></Navbar>
         </SidebarLayout>
         <slot/>
@@ -15,4 +15,10 @@
 </script>
 
 <style scoped>
+
+    #main-container {
+        min-height: 100vh;
+        background-color: #004f83;
+        height: fit-content;
+    }
 </style>
