@@ -15,7 +15,6 @@
 </script>
 
 <style scoped>
-
     #main-container {
         min-height: 100vh;
         background-color: #004f83;

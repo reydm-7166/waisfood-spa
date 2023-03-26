@@ -4,9 +4,6 @@
         <div class="bg bg-secondary fs-4 p-3 d-inline-block align-top content d-flex justify-content-center" id="right-content">
             <div id="register-container" class="">
                 <div class="d-flex justify-content-center w-100">
-                    <div v-if="$page.props.flash.message" class="alert">
-                        {{ $page.props.flash.message }}
-                    </div>
                     <form action=""
                         @submit.prevent="submit"
                         class="d-flex justify-content-center flex-column p-3 align-items-start w-50"

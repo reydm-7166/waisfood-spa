@@ -31,11 +31,12 @@ Route::post('/register/store', [RegisterController::class, 'store'])->name('regi
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 
+Route::post('/login/attempt', [LoginController::class, 'authenticate'])->name('login.attempt');
 
+Route::post('/clear-flash', [LoginController::class, 'clearFlash']);
 
-
-Route::prefix('newsfeed')->group(function () {
-    Route::resource('', NewsfeedController::class);
+Route::prefix('newsfeed')->middleware('auth')->group(function () {
+    Route::resource('', NewsfeedController::class)->names('newsfeed');
 });
 
 Route::prefix('profile')->group(function () {
