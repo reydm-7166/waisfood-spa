@@ -3,7 +3,7 @@
 
 
 :root{
-  --color-default:#004f83;
+  --color-default:#e1ad01;
   --color-second:#0067ac;
   --color-white:#fff;
   --color-body:#e4e9f7;
@@ -47,16 +47,16 @@ body{
 }
 
 .right-content-width {
-    width: 82%;
+    width: 85%;
 }
 
 .expand-side-container {
-    width: 20%;
+    width: 15%;
     z-index: 99;
     transition: all 0.5s ease;
 }
 .expand-right-container {
-    width: 80%;
+    width: 85%;
     transition: all 0.5s ease;
 }
 

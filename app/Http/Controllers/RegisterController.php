@@ -16,6 +16,7 @@ class RegisterController extends Controller
 
     public function index()
     {
+
         return Inertia('Static/Register');
     }
 

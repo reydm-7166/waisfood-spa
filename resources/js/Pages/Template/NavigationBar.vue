@@ -2,7 +2,7 @@
 <div class="sidebar">
     <div class="logo_details">
       <i class="bx bxl-audible icon"></i>
-      <div class="logo_name">WaisFood Account</div>
+      <div class="logo_name">WaisFood</div>
       <i class="bx bx-menu text-dark" id="btn"></i>
     </div>
     <ul class="nav-list">
