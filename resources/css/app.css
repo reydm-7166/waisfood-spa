@@ -1,6 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+
 
 :root{
   --color-default:#e1ad01;
@@ -17,6 +19,9 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
 }
+.font-3 {
+    font-family: 'Ubuntu', sans-serif;
+}
 
 *{
   padding: 0%;
@@ -29,6 +34,19 @@ span {
 }
 body{
   min-height: 100vh;
+}
+.bg {
+    background-color: #5A5A5A
+}
+.btn, .btn-main {
+    background-color: #9ACD32;
+    border-radius: .2rem;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: black;
+    padding: 5px;
+    margin: 0 5px;
 }
 
 .sidebar{

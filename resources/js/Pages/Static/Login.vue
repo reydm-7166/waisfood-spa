@@ -13,7 +13,7 @@
                         <input type="password" name="password" class="form-control font-2 fw-bold" id="password" v-model="form.password" placeholder="ex. password">
                     </div>
                     <div class="mb-1 w-75 m-auto text-center mt-4">
-                        <button class="btn btn-primary font shadow" type="submit" :disabled="form.processing">Login</button>
+                        <button class="btn btn-secondary font shadow" type="submit" :disabled="form.processing">Login</button>
                     </div>
                 </form>
                 <div id="register-container" class="w-100 mt-4 d-flex flex-column align-items-center">

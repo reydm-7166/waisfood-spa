@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\UserRepository;
+use App\Services\UserServices;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -10,7 +10,7 @@ use App\Models\User;
 class RegisterController extends Controller
 {
     public function __construct(
-        protected UserRepository $usersProcess,
+        protected UserServices $userServices,
         protected User $user
     ){}
 

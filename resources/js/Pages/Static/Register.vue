@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="mb-1 w-100 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary shadow font" :disabled="form.processing">Submit</button>
+                            <button type="submit" class="btn btn-main shadow font px-3" :disabled="form.processing">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -80,14 +80,21 @@
     #register-container {
         width: 50%;
     }
+    .btn-main {
+        background-color: #9ACD32;
+        border-radius: .2rem;
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        color: black;
+        padding: 5px;
+        margin: 0 5px;
+    }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
     }
 
-    /* Firefox */
-    input[type=number] {
-    -moz-appearance: textfield;
-    }
 </style>

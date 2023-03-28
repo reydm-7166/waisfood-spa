@@ -3,8 +3,8 @@
     <Head title="Settings"/>
 
     <RightSideLayout>
-        <div class="bg bg-warning fs-4 p-3 d-inline-block align-top content" id="right-content">
-            <div id="head" class="bg bg-secondary w-100 rounded p-2 text-center">
+        <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
+            <div id="head" class="bg w-100 rounded p-2 text-center">
                 <h1 class="font fw-bold">You are in Settings page!</h1>
             </div>
         </div>
