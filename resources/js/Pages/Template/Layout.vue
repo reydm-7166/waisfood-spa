@@ -17,7 +17,7 @@
 <style scoped>
     #main-container {
         min-height: 100vh;
-        background-color: #7A4988;
+        background-color: #F9F4DA;
         height: fit-content;
     }
 </style>

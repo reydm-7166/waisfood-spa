@@ -10,6 +10,31 @@
   --color-white:#fff;
   --color-body:#e4e9f7;
   --color-light:#e0e0e0;
+  --font-1: 'Poppins', sans-serif;
+  --font-2: 'Roboto', sans-serif;
+  --font-3: 'Ubuntu', sans-serif;
+}
+/* generator cards animation */
+/* Define the initial state of the element */
+.fade-in {
+    opacity: 0;
+}
+
+  /* Define the animation using keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+/* Apply the animation to the element */
+.fade-in {
+    animation-name: fadeIn;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
 }
 
 .font {
@@ -139,7 +164,7 @@ body{
 .sidebar li{
   position: relative;
   width: 100%;
-  margin:8px 0;
+  margin: 18px 0 0 12px;
   list-style: none;
 }
 
@@ -163,7 +188,7 @@ body{
   opacity: 1;
   pointer-events: auto;
   transition: all 0.5s ease;
-  top:50%;
+  top: 50%;
   transform: translateY(-50%);
 }
 
@@ -218,7 +243,7 @@ body{
 .sidebar li a::after{
   content: "";
   position: absolute;
-  width: 100%;
+  width: 90%;
   height: 100%;
   transform: scaleX(0);
   background-color: var(--color-white);
@@ -247,7 +272,8 @@ body{
 .sidebar li a:hover .link_name,
 .sidebar li a:hover i{
   transition: all 0.5s ease;
-  color:var(--color-default)
+  color: black;
+
 }
 
 .sidebar.open li a .link_name{
