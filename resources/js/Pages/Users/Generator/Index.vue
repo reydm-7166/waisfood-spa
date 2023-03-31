@@ -1,7 +1,5 @@
 <template>
-
     <Head title="Generator"/>
-
     <RightSideLayout>
         <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
             <div id="head" class="w-100 rounded p-2 text-center d-flex justify-content-center align-items-center p-3">
@@ -20,11 +18,17 @@
                     <div id="wrapper" class="d-flex flex-column justify-content-between p-2 rounded">
                         <div id="card-container" class="d-flex w-100 justify-content-start flex-wrap p-2">
                             <div id="card" class="rounded mx-1 mt-2 p-2" v-for="recipe in recipes.data">
+                                <Link :href="route('generator.show', { id: recipe.id })"></Link>
                                 <div id="border" class="border-start border-5 w-100 h-100 p-2 d-flex flex-column">
                                     <div id="recipe-name" class="h-75 w-100 px-1">
                                         <p class="font-3 text-dark text-break fs-5">{{ recipe.recipe_name }}</p>
+                                        <!-- <div id="img-container" class="border border-dark bg bg-light border-1">
+                                            as
+                                        </div> -->
                                     </div>
-                                    <div id="recipe-details" class="h-25 w-100 mt-1"></div>
+                                    <div id="recipe-details" class="h-25 w-100 mt-1">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -45,8 +49,6 @@
             </section>
         </div>
     </RightSideLayout>
-
-
 </template>
 
 <script>
@@ -54,6 +56,7 @@
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import Navbar from '../../Template/NavigationBar.vue'
     import { sideBar, removeWidth } from '../../../sideBar';
+
     export default {
         layout: Layout,
         components: {
@@ -69,15 +72,15 @@
             },
             linkNext() {
                 return this.recipes.next_page_url == null ? true : false
-            }
-
+            },
         },
         props: {
             recipes: {
                 type: Object,
                 required: true
             }
-        }
+        },
+
     }
 </script>
 
@@ -111,7 +114,7 @@
         color: #ED203D;
     }
     #search:focus {
-        font-weight: 600;
+        font-weight: 550;
         color: #ED203D;
     }
     .out-line {

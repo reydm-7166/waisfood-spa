@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    @routes
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
     {{-- fonts --}}
@@ -21,9 +22,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     {{-- sweetalert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @inertiaHead
   </head>
   <body>
     @inertia
+
   </body>
 </html>

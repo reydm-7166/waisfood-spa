@@ -36,7 +36,10 @@ Route::post('/login/attempt', [LoginController::class, 'authenticate'])->name('l
 Route::post('/clear-flash', [LoginController::class, 'clearFlash']);
 
 Route::prefix('newsfeed')->middleware('auth')->group(function () {
-    Route::resource('', NewsfeedController::class)->names('newsfeed');
+    Route::resource('', NewsfeedController::class, [
+        'names' => 'newsfeed',
+        'parameters' => ['' => 'id']
+    ]);
 });
 
 Route::prefix('profile')->group(function () {
@@ -44,7 +47,10 @@ Route::prefix('profile')->group(function () {
 });
 
 Route::prefix('generator')->group(function () {
-    Route::resource('', GeneratorController::class);
+    Route::resource('', GeneratorController::class, [
+        'names' => 'generator',
+        'parameters' => ['' => 'id']
+    ]);
 });
 
 Route::prefix('messages')->group(function () {
