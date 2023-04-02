@@ -47,7 +47,33 @@
                     </div>
 
                 </div>
-                <div id="filters" class="w-25 bg bg-warning rounded mx-1 p-2 font-3 fw-bold">Filter</div>
+                <div id="filters" class="w-25 bg bg-warning rounded mx-1 p-2 font-3 fw-bold">
+                    <div id="title" class=" text-center">
+                        <p class="font-3 fs-1">Filter</p>
+                    </div>
+
+                    <div id="body">
+                            <div class="form-check form-switch my-2 bg bg-light d-flex align-items-center justify-content-start py-2 rounded">
+                                <input class="form-check-input fs-5 cursor-hand" type="checkbox" value="" id="all" v-model="switch_all" @change="saveSwitchValue">
+                                <label class="form-check-label ms-3 fs-6 cursor-hand fw-normal"
+                                       for="all"
+                                       :class="{
+                                           'disabled-label' : switch_all !== true
+                                       }">Select recipes with all ingredients</label
+                                >
+                            </div>
+
+                            <div class="form-check form-switch my-2 bg bg-light d-flex align-items-center justify-content-start py-2 rounded">
+                                <input class="form-check-input fs-5 cursor-hand" type="checkbox" value="" id="one" v-model="switch_one" @change="saveSwitchValue">
+                                <label class="form-check-label ms-3 fs-6 cursor-hand fw-normal"
+                                       for="one"
+                                       :class="{
+                                            'disabled-label' : switch_one !== true
+                                        }">At least one of the ingredients</label
+                                >
+                            </div>
+                        </div>
+                    </div>
             </section>
         </div>
     </RightSideLayout>
@@ -59,6 +85,7 @@
     import Navbar from '../../Template/NavigationBar.vue'
     import { sideBar, removeWidth } from '../../../sideBar';
 
+
     export default {
         layout: Layout,
         components: {
@@ -67,6 +94,7 @@
         },
         mounted() {
             removeWidth()
+            this.getSwitchValue()
         },
         computed: {
             linkPrev () {
@@ -76,17 +104,38 @@
                 return this.recipes.next_page_url == null ? true : false
             },
         },
+        methods: {
+            saveSwitchValue() {
+                localStorage.setItem('switch_all', this.switch_all);
+                localStorage.setItem('switch_one', this.switch_one);
+            },
+            getSwitchValue() {
+                this.switch_all = localStorage.getItem('switch_all');
+                this.switch_one = localStorage.getItem('switch_one');
+            }
+        },
+        watch: {
+
+        },
         props: {
             recipes: {
                 type: Object,
                 required: true
+            },
+        },
+        data() {
+            return {
+                switch_all: true,
+                switch_one: false,
             }
         },
-
     }
 </script>
 
 <style scoped>
+    .disabled-label {
+        color: #a69d9d;
+    }
     .shadow-3d {
         box-shadow: 5px 5px rgb(40, 96, 160);
     }

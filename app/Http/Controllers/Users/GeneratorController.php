@@ -20,6 +20,14 @@ class GeneratorController extends Controller
 
     public function index()
     {
+//    catch (Exception $e) {
+//        DB::rollback();
+//        Log::error($e);
+//
+//        return redirect()
+//            ->back()
+//            ->with('flash_error', 'Something went wrong, please try again later');
+//    }
         return Inertia('Users/Generator/Index', [
             'recipes' => $this->generatorServices->getAllRecipes()
         ]);

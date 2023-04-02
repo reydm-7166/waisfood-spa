@@ -65,6 +65,6 @@ class User extends Authenticatable
                         'password' => bcrypt($user['password']),
                     ]);
 
-        return $result ? true : false;
+        return (bool)$result;
     }
 }
