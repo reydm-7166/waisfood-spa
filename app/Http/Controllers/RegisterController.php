@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\UserServices;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
 
 
 class RegisterController extends Controller
@@ -20,17 +21,12 @@ class RegisterController extends Controller
         return Inertia('Static/Register');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $validated = $request->validate([
-                'firstname' => ['required', 'min:3', 'max:50', 'alpha'],
-                'lastname' => ['required', 'min:3', 'max:50', 'alpha'],
-                'age' => ['required', 'integer'],
-                'email' => ['required', 'email'],
-                'password' => ['required', 'min:3', 'max:50'],
-                'username' => ['required', 'min:3', 'max:50'],
-        ]);
+        // if $request is valid
+        $validated = $request->validated();
 
+        // insert into database
         $insert = $this->user->registerUser($validated);
 
         return redirect()->route('login.index')->with('message', $insert);

@@ -13,6 +13,7 @@ class Recipe extends Model
         'recipe_name',
         'description',
         'author_id',
+        'slug',
         'is_approved',
         'created_at',
         'updated_at',

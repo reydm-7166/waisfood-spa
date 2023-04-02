@@ -44,9 +44,11 @@ class GeneratorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        return Inertia('Users/Generator/ShowRecipe', [
+            'recipe' => $this->generatorServices->showRecipe($slug),
+        ]);
     }
 
     /**

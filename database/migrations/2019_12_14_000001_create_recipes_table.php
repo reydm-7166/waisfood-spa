@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('recipe_name');
             $table->text('description');
             $table->bigInteger('author_id')->nullable();
+            $table->text('slug');
             $table->string('is_approved')->default('pending');
             $table->timestamps();
             $table->softDeletes();
