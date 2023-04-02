@@ -53,7 +53,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function registerUser(Array $user)
+    public function registerUser(Array $user) : bool
     {
         $result = $this->create([
                         'firstname' => $user['firstname'],

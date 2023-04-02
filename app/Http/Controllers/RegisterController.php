@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Services\UserServices;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 
 
 class RegisterController extends Controller
@@ -15,13 +17,13 @@ class RegisterController extends Controller
         protected User $user
     ){}
 
-    public function index()
+    public function index(): Response|ResponseFactory
     {
 
         return Inertia('Static/Register');
     }
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         // if $request is valid
         $validated = $request->validated();
