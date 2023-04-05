@@ -60,24 +60,23 @@
                     <div id="body">
                         <form @submit.prevent="submit">
                             <div class="form-check form-switch my-2 bg bg-light d-flex align-items-center justify-content-start py-2 rounded">
-                                <input class="form-check-input fs-5 cursor-hand" name="all" type="checkbox" id="all" v-model="switch_all"
-                                       @change="filter">
+                                <input class="form-check-input fs-5 cursor-hand" name="all" type="checkbox" id="all"
+                                       v-model="filter_all">
                                 <label class="form-check-label ms-3 fs-6 cursor-hand fw-normal"
                                        for="all"
                                        :class="{
-                                           'disabled-label' : switch_all !== true
+                                           'disabled-label' : filter_all !== true
                                        }">Select recipes with all ingredients</label
                                 >
                             </div>
 
                             <div class="form-check form-switch my-2 bg bg-light d-flex align-items-center justify-content-start py-2 rounded">
                                 <input class="form-check-input fs-5 cursor-hand" name="one" type="checkbox" id="one"
-                                       v-model="switch_one"
-                                       @change="filter">
+                                       v-model="filter_one">
                                 <label class="form-check-label ms-3 fs-6 cursor-hand fw-normal"
                                        for="one"
                                        :class="{
-                                            'disabled-label' : switch_one !== true
+                                            'disabled-label' : filter_one !== true
                                         }">At least one of the ingredients</label
                                 >
                             </div>
@@ -96,16 +95,32 @@
     import SidebarLayout from '../../Template/SidebarLayout.vue';
     import Navbar from '../../Template/NavigationBar.vue'
     import { sideBar, removeWidth } from '../../../sideBar';
-    import { computed, onMounted, ref, defineProps, reactive } from "vue";
+    import { computed, onMounted, ref, defineProps, reactive, watch } from "vue";
     import { useForm } from "@inertiajs/vue3";
+    import { router } from '@inertiajs/vue3'
 
+    let filter_all = ref('false');
+    let filter_one = ref('false');
 
     onMounted(() => {
         removeWidth()
+
     });
 
-    function filter() {
 
+
+
+    watch(filter_all, value => {
+        console.log(filter_all.value);
+        filterResults(filter_all.value, 'all');
+    })
+    watch(filter_one, value => {
+        console.log(filter_one.value);
+        filterResults(filter_one.value, 'one');
+    });
+
+    function filterResults(value, type) {
+        router.get('/generator', {filter: value, type: type}, {preserveState: true})
     }
 
     const linkPrev = computed( () => {
@@ -123,13 +138,6 @@
         }
     })
 
-    const switch_all = reactive({
-        value: true,
-    })
-
-    const switch_one = reactive({
-        value: false,
-    })
 
 
 </script>

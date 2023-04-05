@@ -30,6 +30,8 @@ class GeneratorController extends Controller
 //            ->with('flash_error', 'Something went wrong, please try again later');
 //    }
 
+            dd(Request::input('type'));
+
         return Inertia('Users/Generator/Index', [
             'recipes' => $this->generatorServices->getAllRecipes()
         ]);
