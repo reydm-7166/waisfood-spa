@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 
 use App\Services\GeneratorServices;
+use Inertia\Response;
 
 class GeneratorController extends Controller
 {
@@ -18,7 +19,7 @@ class GeneratorController extends Controller
         protected GeneratorServices $generatorServices,
     ){}
 
-    public function index()
+    public function index(): Response|ResponseFactory
     {
 //    catch (Exception $e) {
 //        DB::rollback();
@@ -28,13 +29,14 @@ class GeneratorController extends Controller
 //            ->back()
 //            ->with('flash_error', 'Something went wrong, please try again later');
 //    }
+
         return Inertia('Users/Generator/Index', [
             'recipes' => $this->generatorServices->getAllRecipes()
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource
      */
     public function create()
     {

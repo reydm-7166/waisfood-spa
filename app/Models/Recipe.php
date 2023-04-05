@@ -20,5 +20,8 @@ class Recipe extends Model
         'softDeletes'
     ];
 
-
+    public function ingredients(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Ingredient::class);
+    }
 }

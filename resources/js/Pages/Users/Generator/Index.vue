@@ -1,6 +1,7 @@
 <template>
     <Head title="Generator"/>
-    <RightSideLayout>
+    <Layout>
+    <RightSideLayout />
         <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
             <div id="head" class="w-100 rounded p-2 text-center d-flex justify-content-center align-items-center p-3">
                 <div id="search" class="w-50 d-flex justify-content-center align-items-center">
@@ -36,12 +37,16 @@
                         </div>
 
                         <div id="paginate" class="rounded w-100 ms-2 mt-5 d-flex justify-content-center">
-                            <button class="btn-warning px-3 mx-2 rounded font-2 fs-5 shadow-3d" :class="{ 'disabled': linkPrev == null}">
-                                <Link :href="linkPrev" class="text-decoration-none" :class="{ 'text-disabled': linkPrev == null}">Previous</Link>
+                            <button class="btn-warning px-3 mx-2 rounded font-2 fs-5 shadow-3d"
+                                    :class="{ 'disabled': !linkPrev}">
+                                <Link :href="recipes.prev_page_url" class="text-decoration-none"
+                                      :class="{ 'text-disabled': !linkPrev}">Previous</Link>
                             </button>
-                            <span class="text-dark mx-2 fs-5 font-2">Page {{ recipes.current_page }}</span>
-                            <button class="btn-warning px-3 mx-2 rounded font-2 fs-5 shadow-3d" :class="{ 'disabled': linkNext}">
-                                <Link :href="recipes.next_page_url" class="text-decoration-none" :class="{ 'text-disabled': linkNext}">Next</Link>
+                            <span class="text-dark mx-2 fs-5 font-2">Page {{recipes.current_page}}</span>
+                            <button class="btn-warning px-3 mx-2 rounded font-2 fs-5 shadow-3d"
+                                    :class="{ 'disabled': linkNext}">
+                                <Link :href="recipes.next_page_url" class="text-decoration-none"
+                                      :class="{ 'text-disabled': linkNext}">Next</Link>
                             </button>
                         </div>
                     </div>
@@ -53,8 +58,10 @@
                     </div>
 
                     <div id="body">
+                        <form @submit.prevent="submit">
                             <div class="form-check form-switch my-2 bg bg-light d-flex align-items-center justify-content-start py-2 rounded">
-                                <input class="form-check-input fs-5 cursor-hand" type="checkbox" value="" id="all" v-model="switch_all" @change="saveSwitchValue">
+                                <input class="form-check-input fs-5 cursor-hand" name="all" type="checkbox" id="all" v-model="switch_all"
+                                       @change="filter">
                                 <label class="form-check-label ms-3 fs-6 cursor-hand fw-normal"
                                        for="all"
                                        :class="{
@@ -64,7 +71,9 @@
                             </div>
 
                             <div class="form-check form-switch my-2 bg bg-light d-flex align-items-center justify-content-start py-2 rounded">
-                                <input class="form-check-input fs-5 cursor-hand" type="checkbox" value="" id="one" v-model="switch_one" @change="saveSwitchValue">
+                                <input class="form-check-input fs-5 cursor-hand" name="one" type="checkbox" id="one"
+                                       v-model="switch_one"
+                                       @change="filter">
                                 <label class="form-check-label ms-3 fs-6 cursor-hand fw-normal"
                                        for="one"
                                        :class="{
@@ -72,64 +81,57 @@
                                         }">At least one of the ingredients</label
                                 >
                             </div>
-                        </div>
+                            <button class="btn btn-primary" type="submit">Filter</button>
+                        </form>
                     </div>
+                </div>
             </section>
         </div>
-    </RightSideLayout>
+    </Layout>
 </template>
 
-<script>
+<script setup>
     import Layout from '../../Template/Layout.vue';
     import RightSideLayout from '../../Template/RightSideLayout.vue';
+    import SidebarLayout from '../../Template/SidebarLayout.vue';
     import Navbar from '../../Template/NavigationBar.vue'
     import { sideBar, removeWidth } from '../../../sideBar';
+    import { computed, onMounted, ref, defineProps, reactive } from "vue";
+    import { useForm } from "@inertiajs/vue3";
 
 
-    export default {
-        layout: Layout,
-        components: {
-            Navbar,
-            RightSideLayout,
-        },
-        mounted() {
-            removeWidth()
-            this.getSwitchValue()
-        },
-        computed: {
-            linkPrev () {
-                return this.recipes.current_page > 1 ? this.recipes.prev_page_url : null
-            },
-            linkNext() {
-                return this.recipes.next_page_url == null ? true : false
-            },
-        },
-        methods: {
-            saveSwitchValue() {
-                localStorage.setItem('switch_all', this.switch_all);
-                localStorage.setItem('switch_one', this.switch_one);
-            },
-            getSwitchValue() {
-                this.switch_all = localStorage.getItem('switch_all');
-                this.switch_one = localStorage.getItem('switch_one');
-            }
-        },
-        watch: {
+    onMounted(() => {
+        removeWidth()
+    });
 
-        },
-        props: {
-            recipes: {
-                type: Object,
-                required: true
-            },
-        },
-        data() {
-            return {
-                switch_all: true,
-                switch_one: false,
-            }
-        },
+    function filter() {
+
     }
+
+    const linkPrev = computed( () => {
+        return props.recipes.current_page > 1 ? true : false
+    })
+
+    const linkNext = computed( () => {
+        return props.recipes.next_page_url == null ? true : false
+    })
+
+    const props = defineProps({
+        recipes: {
+            type: Object,
+            required: true,
+        }
+    })
+
+    const switch_all = reactive({
+        value: true,
+    })
+
+    const switch_one = reactive({
+        value: false,
+    })
+
+
 </script>
 
 <style scoped>

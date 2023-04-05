@@ -46,6 +46,7 @@ Route::prefix('profile')->group(function () {
     Route::resource('', ProfileController::class);
 });
 
+
 Route::prefix('generator')->group(function () {
     Route::resource('', GeneratorController::class, [
         'names' => 'generator',
