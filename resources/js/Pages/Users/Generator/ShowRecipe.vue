@@ -89,6 +89,7 @@
 
     }
     @media only screen and (min-width: 481px) {
+
         #main-container {
             height: fit-content;
             min-height: 200vh;
@@ -127,6 +128,10 @@
         }
     }
     @media only screen and (min-width: 1024px) {
+        #main-container {
+            height: 100vh;
+            background-color: #F9F4DA;
+        }
         #body-container {
             height: 80%;
             background-color: #FCBA28;
@@ -135,11 +140,7 @@
             display: flex;
             flex-direction: row !important;
         }
-        #details-container {
-            display: flex;
-            flex-direction: row;
-            height: 85vh;
-        }
+
         #details-container {
             display: flex;
             flex-direction: row;
@@ -161,6 +162,9 @@
         #container {
             height: 68%;
         }
+        #ingredients, #directions {
+            margin: 0 2px 0 2px !important;
+        }
     }
     #body-container {
         height: 82vh;
@@ -168,10 +172,7 @@
         margin: 20px 10px 0 10px;
         border-radius: .5rem;
     }
-    #main-container {
-        height: 100vh;
-        background-color: #F9F4DA;
-    }
+
     .text-outline {
         text-shadow:
             -1px -1px 0 #000,
