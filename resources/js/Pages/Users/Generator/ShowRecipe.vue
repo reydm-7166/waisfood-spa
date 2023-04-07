@@ -12,13 +12,13 @@
                     </span>
                 </h1>
             </div>
-            <div id="body-container" class="d-flex justify-content-center">
-                <div id="details-container" class="w-50 d-flex justify-content-center mx-2 rounded p-2">
+            <div id="body-container" class="">
+                <div id="details-container" class="mx-2 rounded p-2">
                     <div id="ingredients" class="w-50 bg bg-dark rounded h-100 mx-2"></div>
                     <div id="directions" class="w-50 bg bg-dark rounded h-100 mx-2"></div>
                 </div>
 
-                <div id="image-container" class="w-50 mx-2 rounded pt-2 h-100">
+                <div id="image-container" class="mx-2 rounded pt-2">
                     <div
                         id="carouselExampleIndicators"
                         class="carousel slide h-100"
@@ -40,8 +40,6 @@
                                      class="w-100 h-100"/>
 
                             </div>
-
-
                         </div>
                         <button
                             class="carousel-control-prev"
@@ -87,13 +85,89 @@
 </script>
 
 <style scoped>
+    @media only screen and (max-width: 480px) {
+
+    }
+    @media only screen and (min-width: 481px) {
+        #main-container {
+            height: fit-content;
+            min-height: 200vh;
+        }
+        #container {
+            height: 150vh;
+        }
+        #container #body-container {
+            display: flex;
+            flex-direction: column-reverse;
+            height: 100%;
+        }
+        #details-container, #image-container {
+            height: 100%;
+            width: 100%;
+        }
+        #body-container {
+            padding: 1rem;
+        }
+        .mx-2, .p-2 {
+            margin: 3px 0 3px 0 !important;
+            padding: 0 !important;
+        }
+        #ingredients, #directions {
+            width: 100% !important;
+        }
+        #details-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .carousel-item {
+            width: 100%;
+        }
+        .carousel-item img {
+            border-radius: .4rem;
+        }
+    }
+    @media only screen and (min-width: 1024px) {
+        #body-container {
+            height: 80%;
+            background-color: #FCBA28;
+            margin: 20px 10px 0 10px;
+            border-radius: .5rem;
+            display: flex;
+            flex-direction: row !important;
+        }
+        #details-container {
+            display: flex;
+            flex-direction: row;
+            height: 85vh;
+        }
+        #details-container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+        #image-container {
+
+            height: 100%;
+        }
+        #carouselExampleIndicators {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            flex-direction: row !important;
+        }
+        #body-container {
+            height: 60% !important;
+        }
+        #container {
+            height: 68%;
+        }
+    }
     #body-container {
         height: 82vh;
         background-color: #FCBA28;
         margin: 20px 10px 0 10px;
         border-radius: .5rem;
     }
-
     #main-container {
         height: 100vh;
         background-color: #F9F4DA;
