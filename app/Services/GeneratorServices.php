@@ -9,12 +9,27 @@ class GeneratorServices {
     public function __construct(
         protected Recipe $recipe,
 
+        //    catch (Exception $e) {
+        //        DB::rollback();
+        //        Log::error($e);
+        //
+        //        return redirect()
+        //            ->back()
+        //            ->with('flash_error', 'Something went wrong, please try again later');
+        //    }
+
     )
     {}
 
-    public function getAllRecipes() : \Illuminate\Contracts\Pagination\Paginator
+    public function getAllRecipes($request) : \Illuminate\Contracts\Pagination\Paginator
     {
-        return $this->recipe->with('ingredients')->simplePaginate(12);
+        return $this->recipe
+                    ->query()
+//                    ->when($request['filter'], function ($query, $filter){ {
+//                        return $query->where->();
+//                    })
+                    ->with('ingredients')
+                    ->simplePaginate(12);
 
     }
 

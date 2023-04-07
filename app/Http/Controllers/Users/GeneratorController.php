@@ -21,19 +21,8 @@ class GeneratorController extends Controller
 
     public function index(): Response|ResponseFactory
     {
-//    catch (Exception $e) {
-//        DB::rollback();
-//        Log::error($e);
-//
-//        return redirect()
-//            ->back()
-//            ->with('flash_error', 'Something went wrong, please try again later');
-//    }
-
-            dd(Request::input('type'));
-
         return Inertia('Users/Generator/Index', [
-            'recipes' => $this->generatorServices->getAllRecipes()
+            'recipes' => $this->generatorServices->getAllRecipes(Request::all())
         ]);
     }
 
@@ -56,7 +45,7 @@ class GeneratorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(string $slug): Response|ResponseFactory
     {
         return Inertia('Users/Generator/ShowRecipe', [
             'recipe' => $this->generatorServices->showRecipe($slug),
