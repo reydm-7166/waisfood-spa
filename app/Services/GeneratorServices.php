@@ -35,7 +35,10 @@ class GeneratorServices {
 
     public function showRecipe(String $slug)
     {
-        return $this->recipe->where('slug', $slug)->first();
+        return $this->recipe
+                    ->where('slug', $slug)
+                    ->with('ingredients')
+                    ->first();
     }
     public function filter($status) : \Illuminate\Contracts\Pagination\Paginator
     {

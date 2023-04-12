@@ -14,8 +14,23 @@
             </div>
             <div id="body-container" class="">
                 <div id="details-container" class="mx-2 rounded p-2">
-                    <div id="ingredients" class="w-50 bg bg-dark rounded h-100 mx-2"></div>
-                    <div id="directions" class="w-50 bg bg-dark rounded h-100 mx-2"></div>
+                    <div id="ingredients" class="w-50 rounded h-100 mx-2">
+                        <div id="label" class="w-100 text-center">
+                            <p class="fs-4 font-2 fw-bold">Ingredients</p>
+                        </div>
+                        <div id="items">
+
+                        </div>
+                    </div>
+                    <div id="directions" class="w-50 rounded h-100 mx-2">
+                        <div id="label" class="w-100 text-center">
+                            <p class="fs-4 font-2 fw-bold">Instructions</p>
+
+                        </div>
+                        <div id="items">
+
+                        </div>
+                    </div>
                 </div>
 
                 <div id="image-container" class="mx-2 rounded pt-2">
@@ -68,7 +83,9 @@
 
 <script setup>
     import { animation } from '../../../recipeAnimation.js';
-    import { onMounted } from 'vue';
+    import {onMounted, ref} from 'vue';
+
+
 
     defineProps({
         recipe: {
@@ -77,13 +94,13 @@
         }
     })
 
+
     onMounted( () => {
         animation();
     });
 
 
 </script>
-
 <style scoped>
     @media only screen and (max-width: 480px) {
 

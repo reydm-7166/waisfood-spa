@@ -104,11 +104,7 @@
 
     onMounted(() => {
         removeWidth()
-
     });
-
-
-
 
     watch(filter_all, value => {
         console.log(filter_all.value);
@@ -137,9 +133,6 @@
             required: true,
         }
     })
-
-
-
 </script>
 
 <style scoped>

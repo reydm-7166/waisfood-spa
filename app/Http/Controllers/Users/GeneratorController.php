@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request;
 
 
 use App\Services\GeneratorServices;
+use App\Models\Recipe;
 use Inertia\Response;
 
 class GeneratorController extends Controller
