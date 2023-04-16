@@ -36,6 +36,9 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.bg-light-blue {
+    background-color: #12B5E5;
+}
 body{
   min-height: 100vh;
 }

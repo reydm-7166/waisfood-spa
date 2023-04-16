@@ -1,93 +1,95 @@
 <template>
     <Head :title="recipe.recipe_name"/>
-    <div class="w-100 p-3" id="main-container">
-        <div id="container" class="w-100">
-            <div id="title" class="w-100 text-center">
-                <!-- <h1 class="text-outline font-3"></h1> -->
-                <h1 class="ml1 font-3">
-                    <span class="text-wrapper">
-                        <span class="line line1"></span>
-                        <span class="letters text-outline">{{ recipe.recipe_name }}</span>
-                        <span class="line line2"></span>
-                    </span>
-                </h1>
-            </div>
-            <div id="body-container" class="">
-                <div id="details-container" class="mx-2 rounded p-2">
-                    <div id="ingredients" class="w-50 rounded h-100 mx-2">
-                        <div id="label" class="w-100 text-center">
-                            <p class="fs-3 font-2 fw-bold">Ingredients</p>
-                        </div>
-                        <div id="items" class="px-4">
-                            <ul>
-                                <li v-for="ingredient in recipeData">
-                                    <p class="fs-5 font-3">{{ ingredient.ingredient}}</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="directions" class="w-50 rounded h-100 mx-2">
-                        <div id="label" class="w-100 text-center">
-                            <p class="fs-4 font-2 fw-bold">Instructions</p>
-
-                        </div>
-                        <div id="items">
-
-                        </div>
-                    </div>
+    <RightSideLayout>
+        <div class="w-100 p-3" id="main-container">
+            <div id="container" class="w-100">
+                <div id="title" class="w-100 text-center">
+                    <!-- <h1 class="text-outline font-3"></h1> -->
+                    <h1 class="ml1 font-3">
+                        <span class="text-wrapper">
+                            <span class="line line1"></span>
+                            <span class="letters text-outline">{{ recipe.recipe_name }}</span>
+                            <span class="line line2"></span>
+                        </span>
+                    </h1>
                 </div>
-
-                <div id="image-container" class="mx-2 rounded pt-2">
-                    <div
-                        id="carouselExampleIndicators"
-                        class="carousel slide h-100"
-                        data-bs-ride="true"
-                    >
-                        <div class="carousel-indicators">
-                            <button
-                                type="button"
-                                data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide-to="0"
-                                class=""
-                                aria-label="Slide 1"
-                            ></button>
+                <div id="body-container" class="">
+                    <div id="details-container" class="mx-2 rounded p-2">
+                        <div id="ingredients" class="w-50 rounded h-100 mx-2">
+                            <div id="label" class="w-100 text-center">
+                                <p class="fs-3 font-2 fw-bold">Ingredients</p>
+                            </div>
+                            <div id="items" class="px-4">
+                                <ul>
+                                    <li v-for="ingredient in recipe.ingredients">
+                                        <p class="fs-5 font-3">{{ ingredient.ingredient}}</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png"
-                                     alt=""
-                                     class="w-100 h-100"/>
+                        <div id="directions" class="w-50 rounded h-100 mx-2">
+                            <div id="label" class="w-100 text-center">
+                                <p class="fs-4 font-2 fw-bold">Instructions</p>
+
+                            </div>
+                            <div id="items">
 
                             </div>
                         </div>
-                        <button
-                            class="carousel-control-prev"
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev"
+                    </div>
+                    <div id="image-container" class="mx-2 rounded pt-2">
+                        <div
+                            id="carouselExampleIndicators"
+                            class="carousel slide h-100"
+                            data-bs-ride="true"
                         >
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button
-                            class="carousel-control-next"
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next"
-                        >
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+                            <div class="carousel-indicators">
+                                <button
+                                    type="button"
+                                    data-bs-target="#carouselExampleIndicators"
+                                    data-bs-slide-to="0"
+                                    class=""
+                                    aria-label="Slide 1"
+                                ></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png"
+                                         alt=""
+                                         class="w-100 h-100"/>
+
+                                </div>
+                            </div>
+                            <button
+                                class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="prev"
+                            >
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button
+                                class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="next"
+                            >
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </RightSideLayout>
 </template>
 
 <script setup>
     import { animation } from '../../../recipeAnimation.js';
     import {onMounted, ref } from 'vue';
+    import RightSideLayout from '../../Template/RightSideLayout.vue';
 
     const props = defineProps({
         recipe: {
@@ -95,11 +97,6 @@
             required: true
         }
     })
-
-    const recipeData = ref(props.recipe.ingredients);
-
-
-
 
     onMounted( () => {
         animation();

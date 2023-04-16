@@ -17,8 +17,6 @@
 
 <script setup>
     import RightSideLayout from '../Template/RightSideLayout.vue';
-
-
 </script>
 
 <style scoped>

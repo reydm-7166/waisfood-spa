@@ -1,22 +1,42 @@
 <template>
-
     <Head title="Messages | WaisFood"/>
-
     <RightSideLayout>
-        <div class="fs-4 p-3 d-inline-block align-top bg-main" id="right-content">
-            <div id="body" class="rounded bg bg-warning">
-                <div id="head" class="w-100 rounded p-1 bg bg-secondary">
+        <div class="fs-4 ps-3 d-inline-block align-top bg-main" id="right-content">
+            <div id="body" class="rounded">
+                <div id="head" class="px-3 w-100 rounded p-1 pt-2">
                     <h3 class="font fw-bold">Messages</h3>
                 </div>
-
-                <div id="messages" class="bg bg-secondary mt-3 rounded d-flex justify-content-center">
-                    <div id="people" class="bg bg-primary rounded w-25 p-2 mx-1">
-                        test
+                        <!--       messages main container         -->
+                <div id="messages" class="mt-1 rounded d-flex justify-content-center bg-light-blue">
+                    <div id="people" class="rounded p-2 mx-1">
+                        <!--           conversation lists             -->
+                        <div id="list-head" class="rounded w-100 position-relative">
+                            <input type="search" name="search" id="search" class="form-control font-2 mt-2" placeholder="Search ...">
+                        </div>
+                        <div id="users-container" class="w-100 mt-2 rounded scrollable overflow-auto p-2">
+                            <!--           profile picture side                 -->
+                            <div id="user1" class="bg bg-warning rounded w-100 d-flex justify-content-center my-2">
+                                <div id="profile-picture" class="w-25 rounded d-flex img-fluid justify-content-center align-items-center">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/4725/4725937.png" alt="">
+                                </div>
+                                <div id="details" class="bg bg-light w-75 rounded d-flex">
+                                    <div id="name-message" class="bg bg-danger rounded px-2">
+                                        <h5 class="mt-2 font-2 text-dark d-block">Name</h5>
+                                        <p class="mt-3 font-2 text-dark d-block fs-6">Sample text preview</p>
+                                    </div>
+                                    <div id="time" class="rounded ps-1">
+                                        <p class="font-2 mt-2">12 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                        <!--          actual conversation          -->
                     <div id="chat" class="bg bg-danger rounded w-75 mx-1 d-flex flex-column align-items-center p-2">
-                        <div id="chat-messages" class="bg bg-primary w-100 rounded p-2">
+                        <div id="chat-messages" class="bg bg-danger w-100 rounded p-2 scrollable overflow-auto">
                             messages
                         </div>
+                        <!--          send message              -->
                         <form @submit.prevent="formSubmit" id="form-message" class="w-100 py-2">
                             <input type="text" name="chat_content" v-model="chat_content" id="chat-content" class="font-2 form-control d-inline-block">
                             <button class="btn btn-primary font-2 d-inline-block" :disabled="form.processing">Send</button>
@@ -26,14 +46,12 @@
             </div>
         </div>
     </RightSideLayout>
-
-
 </template>
 
 <script setup>
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import { useForm } from '@inertiajs/vue3'
-    import { ref, defineProps} from "vue";
+    import { ref, } from "vue";
 
     let chat_content = ref('');
 
@@ -42,17 +60,34 @@
     })
 
     function formSubmit() {
-        // alert("succ")
         form.post('messages', {
             preserveScroll: true,
         })
     }
 
 </script>
-
 <style scoped>
     #body {
-        height: 95%;
+        height: 100%;
+    }
+    #name-message {
+        width: 80%;
+    }
+    #time {
+        width: 20%;
+    }
+    #time p {
+        font-size: 12px;
+    }
+    #profile-picture img {
+        width: 70px;
+        height: 70px;
+    }
+    #users-container {
+        height: 94%;
+    }
+    #user1 {
+        height: 80px;
     }
     #chat-messages {
         /*height: 50%;*/
@@ -60,21 +95,31 @@
     }
     #chat {
         height: 100%;
-
     }
     #chat-content {
         width: 94.1%;
     }
     #messages {
-        height: 100%;
+        height: 93%;
     }
     #people, #chat-messages {
         height: 100%;
     }
+    #people {
+        width: 25%;
+        min-width: 350px;
+    }
     #right-content {
-        height: 98vh;
-        min-height: 98vh;
-        transition: all 0.5s ease;
+        height: 100vh;
+        min-height: 100vh;
         width: 95%;
+    }
+    @media only screen and (width < 1490px) {
+        #time {
+            display : none;
+        }
+        #name-message {
+            width: 100%;
+        }
     }
 </style>
