@@ -1,10 +1,19 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp, Link, Head } from '@inertiajs/vue3'
+import Layout from "../js/Pages/Template/Layout.vue";
+import { resolvePageComponent } from 'vite-plugin-laravel/inertia';
+
 createInertiaApp({
-  resolve: name => {
-    const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
-    return pages[`./Pages/${name}.vue`]
-  },
+    resolve: name => {
+        // let page = resolvePageComponent(name, import.meta.glob('../views/pages/**/*.vue'));
+        const page = resolvePageComponent(name, import.meta.glob('./Pages/**/*.vue', { eager: true }));
+        page.then((module) => {
+            module.layout ??= Layout;
+        });
+        return page;
+    },
+
+
   progress: {
     // The delay after which the progress bar will appear
     // during navigation, in milliseconds.

@@ -1,6 +1,5 @@
 <template>
-    <Head title="Generator"/>
-    <Layout>
+    <Head title="Generator | WaisFood"/>
     <RightSideLayout />
         <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
             <div id="head" class="w-100 rounded p-2 text-center d-flex justify-content-center align-items-center p-3">
@@ -86,7 +85,6 @@
                 </div>
             </section>
         </div>
-    </Layout>
 </template>
 
 <script setup>
@@ -94,7 +92,6 @@
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import SidebarLayout from '../../Template/SidebarLayout.vue';
     import Navbar from '../../Template/NavigationBar.vue'
-    import { sideBar, removeWidth } from '../../../sideBar';
     import { computed, onMounted, ref, defineProps, reactive, watch } from "vue";
     import { useForm } from "@inertiajs/vue3";
     import { router } from '@inertiajs/vue3'

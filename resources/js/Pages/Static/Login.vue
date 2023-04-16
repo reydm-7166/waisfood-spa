@@ -21,8 +21,6 @@
                     <Link href="/register" class="fs-6 text-decoration-underline text-primary">Register here</Link>
                 </div>
             </div>
-
-
         </div>
     </RightSideLayout>
 

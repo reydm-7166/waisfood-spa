@@ -3,7 +3,6 @@
     <div class="logo_details">
       <i class="bx bxl-audible icon"></i>
       <div class="logo_name">WaisFood</div>
-      <i class="bx bx-menu text-dark m-auto" id="btn"></i>
     </div>
     <ul class="nav-list">
         <li>
@@ -57,7 +56,6 @@
 <script>
     import NavLink from './NavigationLink.vue'
     import { ref } from 'vue';
-    import { sideBar, removeWidth } from '../../sideBar.js';
     export default {
         components: {
             NavLink,
@@ -65,9 +63,6 @@
         setup() {
             const message = ref('Hello, world!');
         },
-        mounted() {
-            sideBar()
-        }
     }
 </script>
 

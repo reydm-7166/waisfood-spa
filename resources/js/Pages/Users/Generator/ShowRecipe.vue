@@ -16,10 +16,14 @@
                 <div id="details-container" class="mx-2 rounded p-2">
                     <div id="ingredients" class="w-50 rounded h-100 mx-2">
                         <div id="label" class="w-100 text-center">
-                            <p class="fs-4 font-2 fw-bold">Ingredients</p>
+                            <p class="fs-3 font-2 fw-bold">Ingredients</p>
                         </div>
-                        <div id="items">
-
+                        <div id="items" class="px-4">
+                            <ul>
+                                <li v-for="ingredient in recipeData">
+                                    <p class="fs-5 font-3">{{ ingredient.ingredient}}</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div id="directions" class="w-50 rounded h-100 mx-2">
@@ -83,11 +87,12 @@
 
 <script setup>
     import { animation } from '../../../recipeAnimation.js';
-    import {onMounted, ref} from 'vue';
+    import {onMounted, ref, computed } from 'vue';
 
 
+    const recipeData = ref(props.recipe.ingredients);
 
-    defineProps({
+    const props = defineProps({
         recipe: {
             type: Object,
             required: true

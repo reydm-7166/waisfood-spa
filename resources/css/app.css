@@ -16,26 +16,7 @@
 }
 /* generator cards animation */
 /* Define the initial state of the element */
-.fade-in {
-    opacity: 0;
-}
 
-  /* Define the animation using keyframes */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-/* Apply the animation to the element */
-.fade-in {
-    animation-name: fadeIn;
-    animation-duration: .5s;
-    animation-fill-mode: forwards;
-}
 .cursor-hand {
     cursor: pointer;
 }
@@ -61,6 +42,9 @@ body{
 .bg {
     background-color: #5A5A5A
 }
+.bg-main {
+    background-color: #F9F4DA;
+}
 .btn, .btn-main {
     background-color: #9ACD32;
     border-radius: .2rem;
@@ -80,11 +64,6 @@ body{
   background-color: var(--color-default);
   transition: all .5s ease;
   margin: 0;
-}
-
-.sidebar.open{
-  width: 100%;
-  transition: all 0.5s ease;
 }
 
 .right-content-width {
@@ -123,11 +102,6 @@ body{
   transition: all .5s ease;
 }
 
-.sidebar.open .logo_details .icon,
-.sidebar.open .logo_details .logo_name{
-  opacity: 1;
-}
-
 .sidebar .logo_details #btn{
   position: absolute;
   top:50%;
@@ -138,10 +112,6 @@ body{
   cursor: pointer;
   color: white;
   transition: all .5s ease;
-}
-
-.sidebar.open .logo_details #btn{
-  text-align: right;
 }
 
 .sidebar i{
@@ -190,9 +160,6 @@ body{
   transform: translateY(-50%);
 }
 
-.sidebar.open li .tooltip{
-  display: none;
-}
 
 .sidebar input{
   font-size: 15px;
@@ -211,10 +178,6 @@ body{
   color:var(--color-light)
 }
 
-.sidebar.open input{
-  width: 100%;
-  padding: 0 20px 0 50px;
-}
 
 .sidebar .bx-search{
   position: absolute;
@@ -273,11 +236,6 @@ body{
 
 }
 
-.sidebar.open li a .link_name{
-  opacity: 1;
-  pointer-events: auto;
-}
-
 .sidebar li i{
   height: 35px;
   line-height: 35px;
@@ -296,9 +254,6 @@ body{
   transition: all .5s ease;
 }
 
-.sidebar.open li.profile{
-  width: 250px;
-}
 
 .sidebar .profile .profile_details{
   display: flex;
@@ -327,11 +282,6 @@ body{
 }
 
 
-.sidebar.open .profile #log_out{
-  width: 50px;
-  background: none;
-}
-
 .home-section{
   position: relative;
   background-color: var(--color-body);
@@ -349,9 +299,4 @@ body{
   font-size: 25px;
   font-weight: 500;
   margin: 18px;
-}
-
-.sidebar.open ~ .home-section{
-  left:250px;
-  width: calc(100% - 250px);
 }

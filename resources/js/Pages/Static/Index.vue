@@ -20,8 +20,6 @@
     import SidebarLayout from '../Template/SidebarLayout.vue';
     import RightSideLayout from '../Template/RightSideLayout.vue';
 
-    import { sideBar, removeWidth } from '../../sideBar';
-
     import Navbar from '../Template/NavigationBar.vue'
     export default {
 
@@ -31,9 +29,6 @@
             SidebarLayout,
             RightSideLayout,
         },
-        mounted() {
-            removeWidth()
-        }
     }
 </script>
 

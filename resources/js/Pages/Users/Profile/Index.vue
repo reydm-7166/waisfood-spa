@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Profile"/>
+    <Head title="Profile | WaisFood"/>
 
     <RightSideLayout>
         <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
@@ -17,7 +17,6 @@
     import Layout from '../../Template/Layout.vue';
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import Navbar from '../../Template/NavigationBar.vue'
-    import { sideBar, removeWidth } from '../../../sideBar';
     export default {
         layout: Layout,
         components: {
