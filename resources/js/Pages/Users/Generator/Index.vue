@@ -88,20 +88,20 @@
 </template>
 
 <script setup>
-    import Layout from '../../Template/Layout.vue';
     import RightSideLayout from '../../Template/RightSideLayout.vue';
-    import SidebarLayout from '../../Template/SidebarLayout.vue';
-    import Navbar from '../../Template/NavigationBar.vue'
-    import { computed, onMounted, ref, defineProps, reactive, watch } from "vue";
-    import { useForm } from "@inertiajs/vue3";
+    import { computed, onMounted, ref, defineProps, watch } from "vue";
+    // import { useForm } from "@inertiajs/vue3";
     import { router } from '@inertiajs/vue3'
 
     let filter_all = ref('false');
     let filter_one = ref('false');
 
-    onMounted(() => {
-        removeWidth()
-    });
+    const props = defineProps({
+        recipes: {
+            type: Object,
+            required: true,
+        }
+    })
 
     watch(filter_all, value => {
         console.log(filter_all.value);
@@ -124,12 +124,7 @@
         return props.recipes.next_page_url == null ? true : false
     })
 
-    const props = defineProps({
-        recipes: {
-            type: Object,
-            required: true,
-        }
-    })
+
 </script>
 
 <style scoped>

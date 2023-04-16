@@ -33,8 +33,7 @@
 <script setup>
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import { useForm } from '@inertiajs/vue3'
-    import { computed, onMounted, ref, defineProps, reactive, watch } from "vue";
-    import { router } from '@inertiajs/vue3'
+    import { ref, defineProps} from "vue";
 
     let chat_content = ref('');
 

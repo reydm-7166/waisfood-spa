@@ -13,20 +13,8 @@
 
 </template>
 
-<script>
-    import Layout from '../../Template/Layout.vue';
+<script setup>
     import RightSideLayout from '../../Template/RightSideLayout.vue';
-    import Navbar from '../../Template/NavigationBar.vue'
-    export default {
-        layout: Layout,
-        components: {
-            Navbar,
-            RightSideLayout,
-        },
-        mounted() {
-            removeWidth()
-        }
-    }
 </script>
 
 <style scoped>

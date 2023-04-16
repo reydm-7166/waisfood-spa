@@ -87,10 +87,7 @@
 
 <script setup>
     import { animation } from '../../../recipeAnimation.js';
-    import {onMounted, ref, computed } from 'vue';
-
-
-    const recipeData = ref(props.recipe.ingredients);
+    import {onMounted, ref } from 'vue';
 
     const props = defineProps({
         recipe: {
@@ -98,6 +95,10 @@
             required: true
         }
     })
+
+    const recipeData = ref(props.recipe.ingredients);
+
+
 
 
     onMounted( () => {
