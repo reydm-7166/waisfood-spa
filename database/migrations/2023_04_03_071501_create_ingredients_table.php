@@ -9,6 +9,8 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+    public $timestamps = false;
     public function up(): void
     {
         Schema::create('ingredients', function (Blueprint $table) {
@@ -16,7 +18,6 @@ return new class extends Migration
             $table->foreignId('recipe_id')->constrained()->references('id')->on('recipes')->onUpdate('cascade')->onDelete('cascade');
             $table->text('ingredient');
             $table->text('measurement');
-            $table->timestamps();
         });
     }
 
