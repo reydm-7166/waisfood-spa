@@ -7,11 +7,11 @@
                     <h3 class="font fw-bold">Messages</h3>
                 </div>
                         <!--       messages main container         -->
-                <div id="messages" class="mt-1 rounded d-flex justify-content-center bg-light-blue">
-                    <div id="people" class="rounded p-2 mx-1">
+                <div id="messages" class="mt-1 rounded d-flex justify-content-center bg-light-blue pt-4 pb-2">
+                    <div id="people" class="rounded px-2 mx-1">
                         <!--           conversation lists             -->
                         <div id="list-head" class="rounded w-100 position-relative">
-                            <input type="search" name="search" id="search" class="form-control font-2 mt-2" placeholder="Search ...">
+                            <input type="search" name="search" id="search" class="form-control font-2" placeholder="Search ...">
                         </div>
                         <div id="users-container" class="w-100 mt-2 rounded scrollable overflow-auto p-2">
                             <!--           profile picture side                 -->
@@ -32,9 +32,26 @@
                         </div>
                     </div>
                         <!--          actual conversation          -->
-                    <div id="chat" class="bg bg-danger rounded w-75 mx-1 d-flex flex-column align-items-center p-2">
-                        <div id="chat-messages" class="bg bg-danger w-100 rounded p-2 scrollable overflow-auto">
-                            messages
+                    <div id="chat" class="border-start border-warning border-3 w-75 mx-1 d-flex flex-column align-items-center p-2">
+                        <div id="chat-messages" class="w-100 rounded p-2 scrollable overflow-auto d-flex flex-column-reverse">
+                            <div id="each-message-container"
+                                 class="mt-2"
+                                 v-for="messages in messagesConversation"
+                                 :class="{ 'align-self-end': messages.user_id != props.user_session.id,
+                                   'align-self-start' :  messages.user_id == props.user_session.id
+                                 }">
+                                <div id="each-message" class="bg bg-warning px-3 rounded text-break shadow">
+                                    <p class="font-2 fs-6 mt-2 text-break">{{ messages.content }}</p>
+                                </div>
+                                <div id="message-details px-3"
+                                     v-if="messages.id == first_message"
+                                     :class="{
+                                         'text-end': messages.user_id != props.user_session.id,
+                                         'text-start' :  messages.user_id == props.user_session.id
+                                     }"
+                                    ><p id="details" class="font-2 fw-bold fst-italic mx-1">seen</p>
+                                </div>
+                            </div>
                         </div>
                         <!--          send message              -->
                         <form @submit.prevent="formSubmit" id="form-message" class="w-100 py-2">
@@ -51,14 +68,28 @@
 <script setup>
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import { useForm } from '@inertiajs/vue3'
-    import { ref, } from "vue";
+    import { ref, defineProps, onMounted, computed } from "vue";
 
     let chat_content = ref('');
+
+    let props = defineProps({
+        messagesConversation: {
+            type: Object,
+        },
+        user_session: {
+            type: Object,
+        }
+    })
 
     const form = useForm({
         chat_content: chat_content
     })
 
+    let first_message = ref(props.messagesConversation[0].id);
+
+    onMounted( () => {
+
+    })
     function formSubmit() {
         form.post('messages', {
             preserveScroll: true,
@@ -67,6 +98,20 @@
 
 </script>
 <style scoped>
+    #each-message-container {
+        max-width: 50%;
+        height: fit-content;
+        /*border: 1px solid black;*/
+    }
+    #details {
+        font-size: 13px;
+    }
+    #each-message {
+        border: 1px solid black;
+    }
+    #message-details {
+        height: 2vh;
+    }
     #body {
         height: 100%;
     }

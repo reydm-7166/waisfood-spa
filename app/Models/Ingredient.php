@@ -10,6 +10,7 @@ class Ingredient extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
     public function recipe(): BelongsTo
     {
         return $this->belongsTo(Recipe::class);
