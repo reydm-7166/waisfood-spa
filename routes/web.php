@@ -55,7 +55,10 @@ Route::prefix('generator')->group(function () {
 });
 
 Route::prefix('messages')->group(function () {
-    Route::resource('', MessageController::class);
+    Route::resource('', MessageController::class, [
+        'names' => 'messages',
+        'parameters' => ['' => 'id']
+    ]);
 });
 
 Route::prefix('settings')->group(function () {

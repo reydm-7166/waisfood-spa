@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Carbon;
 
 class MessageServices {
     public function __construct(
@@ -14,6 +15,15 @@ class MessageServices {
         protected User $user,
     )
     {}
+
+    public function getConversationList() : array|Collection
+    {
+        return $this->message
+                    ->distinct('recipient_id')
+                    ->where('user_id', Auth::id())
+                    ->with('recipient')
+                    ->get();
+    }
 
     public function getMessagesById($recipient_id) : array|Collection
     {
@@ -29,5 +39,17 @@ class MessageServices {
             })
             ->orderBy('created_at', 'desc')
             ->get();
+    }
+
+    public function sendMessage($request) : bool
+    {
+        $insert = $this->message->create([
+            'user_id' => Auth::id(),
+            'recipient_id' => $request->recipient_id,
+            'content' => $request->chat_content,
+            'read_at' => now(),
+        ]);
+
+        return (bool)$insert;
     }
 }

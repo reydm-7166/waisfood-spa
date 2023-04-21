@@ -15,17 +15,19 @@
                         </div>
                         <div id="users-container" class="w-100 mt-2 rounded scrollable overflow-auto p-2">
                             <!--           profile picture side                 -->
-                            <div id="user1" class="bg bg-warning rounded w-100 d-flex justify-content-center my-2">
+                            <div id="user1"
+                                 class="bg bg-warning rounded w-100 d-flex justify-content-center my-2"
+                                 v-for="conversation in conversationList">
                                 <div id="profile-picture" class="w-25 rounded d-flex img-fluid justify-content-center align-items-center">
                                     <img src="https://cdn-icons-png.flaticon.com/512/4725/4725937.png" alt="">
                                 </div>
                                 <div id="details" class="bg bg-light w-75 rounded d-flex">
                                     <div id="name-message" class="bg bg-danger rounded px-2">
-                                        <h5 class="mt-2 font-2 text-dark d-block">Name</h5>
-                                        <p class="mt-3 font-2 text-dark d-block fs-6">Sample text preview</p>
+                                        <h5 class="mt-2 font-2 text-dark d-block">{{ `${conversation.recipient.firstname} ${conversation.recipient.lastname} `}}</h5>
+                                        <p class="mt-3 font-2 text-dark d-block fs-6 text-truncate">{{ conversation.content }}</p>
                                     </div>
                                     <div id="time" class="rounded ps-1">
-                                        <p class="font-2 mt-2">12 PM</p>
+                                        <p class="font-2 mt-2">{{ date(conversation.created_at) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -33,24 +35,24 @@
                     </div>
                         <!--          actual conversation          -->
                     <div id="chat" class="border-start border-warning border-3 w-75 mx-1 d-flex flex-column align-items-center p-2">
-                        <div id="chat-messages" class="w-100 rounded p-2 scrollable overflow-auto d-flex flex-column-reverse">
+                        <div id="chat-messages" class="w-100 rounded p-2 scrollable overflow-auto d-flex flex-column-reverse pe-5 ps-4">
                             <div id="each-message-container"
-                                 class="mt-2"
+                                 class="mt-2 rounded"
                                  v-for="messages in messagesConversation"
-                                 :class="{ 'align-self-end': messages.user_id != props.user_session.id,
-                                   'align-self-start' :  messages.user_id == props.user_session.id
+                                 :class="{ 'align-self-end shadow-3d-self': messages.user_id == props.user_session.id,
+                                   'align-self-start shadow-3d-other' :  messages.user_id != props.user_session.id
                                  }">
-                                <div id="each-message" class="bg bg-warning px-3 rounded text-break shadow">
-                                    <p class="font-2 fs-6 mt-2 text-break">{{ messages.content }}</p>
+                                <div id="each-message" class="bg bg-warning px-3 pt-2 rounded text-break shadow d-flex justify-content-center">
+                                    <p class="font-2 fs-6 text-break">{{ messages.content }}</p>
                                 </div>
-                                <div id="message-details px-3"
-                                     v-if="messages.id == first_message"
-                                     :class="{
-                                         'text-end': messages.user_id != props.user_session.id,
-                                         'text-start' :  messages.user_id == props.user_session.id
-                                     }"
-                                    ><p id="details" class="font-2 fw-bold fst-italic mx-1">seen</p>
-                                </div>
+<!--                                <div id="message-details px-3"-->
+<!--                                     v-if="messages.id == first_message"-->
+<!--                                     :class="{-->
+<!--                                         'text-end': messages.user_id == props.user_session.id,-->
+<!--                                         'text-start' :  messages.user_id != props.user_session.id-->
+<!--                                     }"-->
+<!--                                    ><p id="details" class="font-2 fw-bold fst-italic mx-1">seen</p>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <!--          send message              -->
@@ -69,31 +71,44 @@
     import RightSideLayout from '../../Template/RightSideLayout.vue';
     import { useForm } from '@inertiajs/vue3'
     import { ref, defineProps, onMounted, computed } from "vue";
+    import moment from 'moment';
 
     let chat_content = ref('');
 
     let props = defineProps({
+        conversationList: {
+            type: Object,
+        },
         messagesConversation: {
             type: Object,
         },
         user_session: {
             type: Object,
+        },
+        insert_success: {
+            type: Boolean,
+            default: false
         }
     })
 
+    let date = () => {
+        return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+    };
     const form = useForm({
-        chat_content: chat_content
+        chat_content: chat_content,
+        recipient_id: 2,
     })
 
-    let first_message = ref(props.messagesConversation[0].id);
+    let first_message = props.messagesConversation ? ref(props.messagesConversation[0].id) : ref('');
 
     onMounted( () => {
-
+        console.log(props.conversationList)
     })
     function formSubmit() {
         form.post('messages', {
             preserveScroll: true,
         })
+
     }
 
 </script>
@@ -103,11 +118,17 @@
         height: fit-content;
         /*border: 1px solid black;*/
     }
+    .shadow-3d-self {
+        box-shadow: 5px 5px rgb(40, 96, 160);
+    }
+    .shadow-3d-other {
+        box-shadow: -5px 5px rgb(40, 96, 160);
+    }
     #details {
         font-size: 13px;
     }
     #each-message {
-        border: 1px solid black;
+        /*border: 1px solid black;*/
     }
     #message-details {
         height: 2vh;
