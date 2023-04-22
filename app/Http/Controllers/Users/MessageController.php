@@ -16,18 +16,17 @@ class MessageController extends Controller
 
     public function index(): Response|ResponseFactory
     {
-
         return Inertia('Users/Message/Index', [
             'conversationList' => $this->messages->getConversationList()
         ]);
     }
 
-    public function getConversationById($recipient_id): Response|ResponseFactory
+    public function show($recipient_id): Response|ResponseFactory
     {
-        $recipient_id = 2;
         return Inertia('Users/Message/Index', [
             'messagesConversation' => $this->messages->getMessagesById($recipient_id)
         ]);
+
     }
 
     public function store(Request $request)

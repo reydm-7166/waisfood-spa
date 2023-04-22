@@ -25,8 +25,9 @@ class MessageServices {
                     ->get();
     }
 
-    public function getMessagesById($recipient_id) : array|Collection
+    public function getMessagesById($unique_id) : array|Collection
     {
+        $recipient_id = $this->user->where('unique_id', $unique_id)->pluck('id')->first();
         return $this->message
             ->with('user')
             ->where(function($query) use ($recipient_id) {
