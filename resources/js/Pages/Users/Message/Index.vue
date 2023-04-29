@@ -8,40 +8,9 @@
                 </div>
                         <!--       messages main container         -->
                 <div id="messages" class="mt-1 rounded d-flex justify-content-center bg-light-blue pt-4 pb-2">
-                    <div id="people" class="rounded px-2 mx-1">
-                        <!--           conversation lists             -->
-                    <!--                        search              -->
-                        <div id="list-head" class="bg-darker rounded w-100 position-relative">
-                            <input type="search" name="search" id="search" class="form-control font-2" placeholder="Search ...">
-                        </div>
-                    <!--                       conversation box on left         -->
-                            <div id="users-container" class="w-100 mt-2 rounded scrollable overflow-auto p-2">
-                                <!--           profile picture side                 -->
-                                <div id="user"
-                                     class="bg-darker rounded w-100 d-flex justify-content-center my-2"
-                                     v-for="conversation in conversationList">
-                                    <div id="profile-picture" class="w-25 rounded d-flex img-fluid justify-content-center align-items-center">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/4725/4725937.png" alt="">
-                                    </div>
-                                    <div id="details" data-id="" class="bg-darker w-75 rounded d-flex">
-                                        <div id="name-message" class="rounded px-2">
-                                            <h5 class="mt-2 font-2 d-block">
-                                                <Link
-                                                    class="custom-link"
-                                                    :href="route('messages.show', { id: conversation.recipient.unique_id })">
-                                                {{ `${conversation.recipient.firstname} ${conversation.recipient.lastname} `}}
-                                                </Link>
-                                            </h5>
-                                            <p class="mt-3 font-2 text-dark d-block fs-6 text-truncate">{{ conversation.content }}</p>
-                                        </div>
-                                        <div id="time" class="rounded ps-1">
-                                            <p class="font-2 mt-2">{{ date(conversation.created_at) }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <ConversationListLayout :conversation-list="conversationList" :user_session="user_session">
 
-                    </div>
+                    </ConversationListLayout>
                         <!--          actual conversation          -->
                     <div id="chat" class="border-start border-warning border-3 w-75 mx-1 d-flex flex-column align-items-center p-2">
                         <div id="chat-messages" class="w-100 rounded p-2 scrollable overflow-auto d-flex flex-column-reverse pe-5 ps-4">
@@ -54,14 +23,6 @@
                                 <div id="each-message" class="bg bg-warning px-3 pt-2 rounded text-break shadow d-flex justify-content-center">
                                     <p class="font-2 fs-6 text-break">{{ messages.content }}</p>
                                 </div>
-<!--                                <div id="message-details px-3"-->
-<!--                                     v-if="messages.id == first_message"-->
-<!--                                     :class="{-->
-<!--                                         'text-end': messages.user_id == props.user_session.id,-->
-<!--                                         'text-start' :  messages.user_id != props.user_session.id-->
-<!--                                     }"-->
-<!--                                    ><p id="details" class="font-2 fw-bold fst-italic mx-1">seen</p>-->
-<!--                                </div>-->
                             </div>
                         </div>
                         <!--          send message              -->
@@ -77,11 +38,11 @@
 </template>
 
 <script setup>
-    import RightSideLayout from '../../Template/RightSideLayout.vue';
+    import RightSideLayout from "@/Pages/Template/RightSideLayout.vue";
+    import ConversationListLayout from '../../Template/MessagesLayout.vue';
     import { useForm } from '@inertiajs/vue3'
-    import { ref, defineProps, onMounted, computed } from "vue";
-    import { router } from '@inertiajs/vue3'
-    import moment from 'moment';
+    import { ref, defineProps, onMounted } from "vue";
+    import Echo from 'laravel-echo'
 
     let chat_content = ref('');
 
@@ -92,6 +53,9 @@
         messagesConversation: {
             type: Object,
         },
+        recipientId: {
+            type: Number,
+        },
         user_session: {
             type: Object,
         },
@@ -101,23 +65,31 @@
         }
     })
 
-    let date = () => {
-        return moment(date).format('MMMM Do YYYY');
-    }
     const form = useForm({
         chat_content: chat_content,
-        recipient_id: 2,
+        recipient_id: props.recipientId,
+    })
+
+    function listen()
+    {
+        window.Echo.channel('message')
+            .listen('NewMessage', (e) => {
+                console.log(e);
+            });
+    }
+
+    onMounted( () => {
+        listen()
     })
 
     let first_message = props.messagesConversation ? ref(props.messagesConversation[0].id) : ref('');
 
-    onMounted( () => {
-        console.log(props.conversationList)
-    })
     function formSubmit() {
-        form.post('messages', {
+        form.post('/messages', {
             preserveScroll: true,
         })
+        form.reset()
+        form.clearErrors()
 
     }
 

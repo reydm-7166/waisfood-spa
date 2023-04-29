@@ -26,6 +26,7 @@ class LoginController extends Controller
             'password' => ['required', 'min:3', 'max:50'],
         ]);
 
+
         return $this->userServices->authenticateUserLogin($validated)
                 ? redirect()->route('newsfeed.index')->with('message', 'Logged in succesfully!')
                 : back()->with('message', "Credentials don't match");

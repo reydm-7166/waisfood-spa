@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Events\NewMessage;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -50,6 +51,8 @@ class MessageServices {
             'content' => $request->chat_content,
             'read_at' => now(),
         ]);
+//        broadcast(new NewMessage($insert))->toOthers();
+        event(new NewMessage("TEST BROADCAST"));
 
         return (bool)$insert;
     }

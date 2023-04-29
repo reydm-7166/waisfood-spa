@@ -2,6 +2,7 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Link, Head } from '@inertiajs/vue3'
 import Layout from "../js/Pages/Template/Layout.vue";
 import { resolvePageComponent } from 'vite-plugin-laravel/inertia';
+import './bootstrap';
 
 createInertiaApp({
     resolve: name => {
