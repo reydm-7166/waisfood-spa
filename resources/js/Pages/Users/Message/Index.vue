@@ -41,7 +41,7 @@
     import RightSideLayout from "@/Pages/Template/RightSideLayout.vue";
     import ConversationListLayout from '../../Template/MessagesLayout.vue';
     import { useForm } from '@inertiajs/vue3'
-    import { ref, defineProps, onMounted } from "vue";
+    import { ref, defineProps, onMounted, reactive  } from "vue";
     import Echo from 'laravel-echo'
 
     let chat_content = ref('');
@@ -62,35 +62,40 @@
         insert_success: {
             type: Boolean,
             default: false
-        }
+        },
+        errors: Object,
+        flash: Object,
     })
+
+    // this is for 2 way binding
+    const conversation = reactive(props.messagesConversation);
 
     const form = useForm({
         chat_content: chat_content,
         recipient_id: props.recipientId,
     })
 
-    function listen()
+    function listen(conversation)
     {
         window.Echo.channel('message')
             .listen('NewMessage', (e) => {
                 console.log(e);
+                conversation.unshift(e);
             });
     }
 
     onMounted( () => {
-        listen()
+        listen(conversation)
     })
 
     let first_message = props.messagesConversation ? ref(props.messagesConversation[0].id) : ref('');
 
-    function formSubmit() {
-        form.post('/messages', {
+    async function formSubmit() {
+        await form.post('/messages', {
             preserveScroll: true,
         })
+        chat_content = '';
         form.reset()
-        form.clearErrors()
-
     }
 
 </script>

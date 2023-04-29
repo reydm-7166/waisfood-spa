@@ -51,9 +51,8 @@ class MessageServices {
             'content' => $request->chat_content,
             'read_at' => now(),
         ]);
-//        broadcast(new NewMessage($insert))->toOthers();
-        event(new NewMessage("TEST BROADCAST"));
-
+        broadcast(new NewMessage($insert))->toOthers();
+//        event(new NewMessage($insert));
         return (bool)$insert;
     }
 }
