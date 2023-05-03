@@ -32,7 +32,6 @@
                     </div>
                 </div>
             </div>
-            <p>Your name is :: {{ user_session.firstname + " " + user_session.lastname }}</p>
         </div>
 
     </div>

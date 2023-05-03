@@ -27,7 +27,11 @@
                         </div>
                         <!--          send message              -->
                         <form @submit.prevent="formSubmit" id="form-message" class="w-100 py-2">
-                            <input type="text" name="chat_content" v-model="chat_content" id="chat-content" class="font-2 form-control d-inline-block">
+                            <input type="text" name="chat_content"
+                                   v-model="chat_content"
+                                   id="chat-content"
+                                   placeholder="Send a Message ..."
+                                   class="font-2 form-control d-inline-block">
                             <button class="btn btn-primary font-2 d-inline-block" :disabled="form.processing">Send</button>
                         </form>
                     </div>
@@ -44,7 +48,7 @@
     import { ref, defineProps, onMounted, reactive  } from "vue";
     import Echo from 'laravel-echo'
 
-    let chat_content = ref('');
+    let chat_content = ref('')
 
     let props = defineProps({
         conversationList: {
@@ -68,18 +72,19 @@
     })
 
     // this is for 2 way binding
-    const conversation = reactive(props.messagesConversation);
+    let conversation = reactive(props.messagesConversation);
 
     const form = useForm({
         chat_content: chat_content,
         recipient_id: props.recipientId,
     })
 
+
+
     function listen(conversation)
     {
         window.Echo.channel('message')
             .listen('NewMessage', (e) => {
-                console.log(e);
                 conversation.unshift(e);
             });
     }
@@ -93,9 +98,9 @@
     async function formSubmit() {
         await form.post('/messages', {
             preserveScroll: true,
+            preserveState: false,
         })
-        chat_content = '';
-        form.reset()
+        chat_content = ''
     }
 
 </script>
