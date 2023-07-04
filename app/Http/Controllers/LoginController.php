@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Services\UserServices;
 use App\Models\User;
@@ -19,13 +20,12 @@ class LoginController extends Controller
         return Inertia('Static/Login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(Request $request) : RedirectResponse
     {
         $validated = $request->validate([
-            'username' => ['required', 'min:3', 'max:50', 'alpha'],
+            'username' => ['required', 'min:3', 'max:50'],
             'password' => ['required', 'min:3', 'max:50'],
         ]);
-
 
         return $this->userServices->authenticateUserLogin($validated)
                 ? redirect()->route('newsfeed.index')->with('message', 'Logged in succesfully!')
