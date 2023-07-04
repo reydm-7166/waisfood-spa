@@ -13,7 +13,7 @@
         height: 100%;
     }
     .left-navbar {
-        width: 5%;
+        width: 95px;
         transition: all 0.5s ease;
     }
 

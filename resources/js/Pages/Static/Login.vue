@@ -3,20 +3,31 @@
     <RightSideLayout>
         <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
             <div id="register-container" class="bg bg-warning w-25 rounded d-flex align-items-center flex-column m-auto mt-5">
-                <form @submit.prevent="submit" class="w-100 mt-3">
-                    <div class="mb-1 w-75 m-auto">
+                <form @submit.prevent="submit"
+                      class="w-100 mt-3 h-25                                                                                                                              ">
+                    <div class="mb-4 w-75 m-auto border">
                         <label for="username" class="form-label font-2 fs-6">Username</label>
-                        <input type="text" name="username" class="form-control font-2 fw-bold" id="username" v-model="form.username" placeholder="ex. godgamer123">
+                        <input
+                            type="text"
+                            name="username"
+                            class="form-control font-2 fw-bold border"
+                            id="username"
+                            v-model="form.username"
+                            :class="{
+                              'border border-2 border-danger': errors.username
+                            }"
+                            placeholder="ex. godgamer123">
+                        <small class="error fs-7" v-if="errors.username">{{ errors.username }}</small>
                     </div>
-                    <div class="mb-1 w-75 m-auto">
+                    <div class="mb-5 w-75 m-auto  border">
                         <label for="password" class="form-label font-2 fs-6">Password</label>
                         <input type="password" name="password" class="form-control font-2 fw-bold" id="password" v-model="form.password" placeholder="ex. password">
                     </div>
-                    <div class="mb-1 w-75 m-auto text-center mt-4">
+                    <div class="mb-5 w-75 m-auto text-center">
                         <button class="btn btn-secondary font shadow" type="submit" :disabled="form.processing">Login</button>
                     </div>
                 </form>
-                <div id="register-container" class="w-100 mt-4 d-flex flex-column align-items-center">
+                <div id="register-container" class="w-100 d-flex flex-column align-items-center">
                     <p class="font text-dark fs-6">Don't have an account yet?</p>
                     <Link href="/register" class="fs-6 text-decoration-underline text-primary">Register here</Link>
                 </div>
@@ -28,11 +39,16 @@
 
 <script setup>
     import RightSideLayout from '../Template/RightSideLayout.vue';
-    import { computed } from 'vue'
+    import {computed, defineProps} from 'vue'
     import { useForm } from '@inertiajs/vue3'
     import { usePage } from '@inertiajs/vue3'
 
+
     const message =  computed(() => usePage().props.flash)
+
+    defineProps({
+      errors: Object,
+    })
 
     if (message.value.auth == 'Error') {
         Swal.fire({

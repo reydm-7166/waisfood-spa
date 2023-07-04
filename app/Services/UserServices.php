@@ -14,7 +14,7 @@ class UserServices {
     ){}
     public function authenticateUserLogin(Array $user_data) : bool
     {
-        return Auth::attempt(['username' => $user_data['username'], 'password' => $user_data['password']]) ? true : false;
+        return (bool)Auth::attempt(['username' => $user_data['username'], 'password' => $user_data['password']]);
     }
 
     public function getRecipientId($recipient_id) : Int
