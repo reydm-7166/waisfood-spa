@@ -1,8 +1,8 @@
 <template>
     <Head title="Register"/>
     <RightSideLayout>
-        <div class="bg bg-secondary fs-4 p-3 d-inline-block align-top content d-flex justify-content-center" id="right-content">
-            <div id="register-container" class="">
+        <div class="bg bg-secondary fs-4 p-3 d-inline-block align-top content" id="right-content">
+            <div id="register-container" class="bg bg-warning rounded m-auto mt-5 w-50">
                 <div class="d-flex justify-content-center w-100">
                     <form action=""
                         @submit.prevent="submit"
@@ -16,7 +16,7 @@
                             <label for="lastname" class="form-label font-2 fs-6">Last Name</label>
                             <input type="text" name="lastname" class="form-control font-2 fw-bold" v-model="form.lastname" id="lastname" placeholder="ex. Doe">
                         </div>
-                        <div class="mb-1 w-50">
+                        <div class="mb-1 w-25">
                             <label for="age" class="form-label font-2 fs-6">Age</label>
                             <input type="number" name="age" class="form-control font-2 fw-bold" v-model="form.age" id="age" placeholder="Age" min="0" max="65">
                         </div>
@@ -34,8 +34,8 @@
                             <input type="text" name="username" class="form-control font-2 fw-bold" v-model="form.username" placeholder="sample123" aria-label="Username" id="username" aria-describedby="basic-addon1">
                         </div>
 
-                        <div class="mb-1 w-100 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-main shadow font px-3" :disabled="form.processing">Submit</button>
+                        <div class="mb-1 w-100 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary shadow font px-3" :disabled="form.processing">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -76,6 +76,7 @@
     #right-content {
         height: fit-content;
         min-height: 100vh;
+        width: 95%;
     }
     #register-container {
         width: 50%;

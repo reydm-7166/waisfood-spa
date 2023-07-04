@@ -19,7 +19,6 @@ class RegisterController extends Controller
 
     public function index(): Response|ResponseFactory
     {
-
         return Inertia('Static/Register');
     }
 

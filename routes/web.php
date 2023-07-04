@@ -54,7 +54,7 @@ Route::prefix('generator')->group(function () {
     ]);
 });
 
-Route::prefix('messages')->group(function () {
+Route::prefix('messages')->middleware('auth')->group(function () {
     Route::resource('', MessageController::class, [
         'names' => 'messages',
         'parameters' => ['' => 'id']

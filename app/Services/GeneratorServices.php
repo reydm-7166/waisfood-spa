@@ -20,7 +20,6 @@ class GeneratorServices {
                     ->simplePaginate(12);
 
     }
-
     public function showRecipe(String $slug)
     {
         return $this->recipe
@@ -30,8 +29,6 @@ class GeneratorServices {
     }
     public function filter($status) : Paginator
     {
-
-            return $this->recipe->with('ingredients')->where('id', 2)->simplePaginate(12);
-
+        return $this->recipe->with('ingredients')->where('id', 2)->simplePaginate(12);
     }
 }

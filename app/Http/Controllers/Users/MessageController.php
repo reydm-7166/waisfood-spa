@@ -15,14 +15,12 @@ class MessageController extends Controller
         protected MessageServices $messages,
         protected UserServices $users,
     ){}
-
     public function index(): Response|ResponseFactory
     {
         return Inertia('Users/Message/Index', [
             'conversationList' => $this->messages->getConversationList()
         ]);
     }
-
     public function show($recipient_id): Response|ResponseFactory
     {
         return Inertia('Users/Message/Index', [

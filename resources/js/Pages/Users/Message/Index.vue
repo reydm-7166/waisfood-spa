@@ -12,8 +12,21 @@
 
                     </ConversationListLayout>
                         <!--          actual conversation          -->
-                    <div id="chat" class="border-start border-warning border-3 w-75 mx-1 d-flex flex-column align-items-center p-2">
-                        <div id="chat-messages" class="w-100 rounded p-2 scrollable overflow-auto d-flex flex-column-reverse pe-5 ps-4">
+
+                    <div id="chat" class="border-start border-warning border-3 w-75 mx-1 d-flex flex-column align-items-center pe-2">
+                        <div id="chat-header" class="w-100 rounded d-flex bg bg-warning d-flex align-items-center" v-if="(recipient)">
+                            <div id="back-btn" class="">
+                                <button class="btn btn-primary">Back</button>
+                            </div>
+                            <div id="people-details" class="mx-2">
+                                <p class="mt-2">{{ recipient.recipient.firstname + " " + recipient.recipient.lastname }}</p>
+                            </div>
+                        </div>
+
+                        <div id="no-conversation" class="h-100 w-100 d-flex justify-content-center" v-else>
+                            <p class="m-auto font-2">Start or view conversation</p>
+                        </div>
+                        <div id="chat-messages" class="w-100 rounded p-2 mt-1 scrollable overflow-auto d-flex flex-column-reverse pe-5 ps-4">
                             <div id="each-message-container"
                                  class="mt-2 rounded"
                                  v-for="messages in messagesConversation"
@@ -26,7 +39,7 @@
                             </div>
                         </div>
                         <!--          send message              -->
-                        <form @submit.prevent="formSubmit" id="form-message" class="w-100 py-2">
+                        <form @submit.prevent="formSubmit" id="form-message" class="w-100 ms-2" v-if="(recipient)">
                             <input type="text" name="chat_content"
                                    v-model="chat_content"
                                    id="chat-content"
@@ -34,6 +47,8 @@
                                    class="font-2 form-control d-inline-block">
                             <button class="btn btn-primary font-2 d-inline-block" :disabled="form.processing">Send</button>
                         </form>
+
+
                     </div>
                 </div>
             </div>
@@ -73,14 +88,12 @@
 
     // this is for 2 way binding
     let conversation = reactive(props.messagesConversation);
+    let recipient = reactive(findRecipient());
 
     const form = useForm({
         chat_content: chat_content,
         recipient_id: props.recipientId,
     })
-
-
-
     function listen(conversation)
     {
         window.Echo.channel('message')
@@ -88,11 +101,19 @@
                 conversation.unshift(e);
             });
     }
-
     onMounted( () => {
         listen(conversation)
     })
-
+    function findRecipient()
+    {
+        const conversationList = props.conversationList;
+        for (const conversation of conversationList) {
+            if(conversation.recipient_id == props.recipientId)
+            {
+                return conversation;
+            }
+        }
+    }
     let first_message = props.messagesConversation ? ref(props.messagesConversation[0].id) : ref('');
 
     async function formSubmit() {
@@ -121,27 +142,15 @@
     .shadow-3d-other {
         box-shadow: -5px 5px rgb(40, 96, 160);
     }
-    #details {
-        font-size: 13px;
-    }
+
     #each-message {
         /*border: 1px solid black;*/
     }
-    .bg-darker {
-        background-color: #0e7d9e;
-    }
-    #message-details {
-        height: 2vh;
-    }
+
     #body {
         height: 100%;
     }
-    #name-message {
-        width: 80%;
-    }
-    #time {
-        width: 20%;
-    }
+
     #time p {
         font-size: 12px;
     }
@@ -149,15 +158,13 @@
         width: 70px;
         height: 70px;
     }
-    #users-container {
-        height: 94%;
-    }
-    #user1 {
-        height: 80px;
-    }
+
     #chat-messages {
         /*height: 50%;*/
         min-height: 80%;
+    }
+    #chat-header {
+        height: 8%;
     }
     #chat {
         height: 100%;
@@ -168,13 +175,7 @@
     #messages {
         height: 93%;
     }
-    #people, #chat-messages {
-        height: 100%;
-    }
-    #people {
-        width: 25%;
-        min-width: 350px;
-    }
+
     #right-content {
         height: 100vh;
         min-height: 100vh;

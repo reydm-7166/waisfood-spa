@@ -51,9 +51,9 @@
                     </div>
 
                 </div>
-                <div id="filters" class="w-25 bg bg-warning rounded mx-1 p-2 font-3 fw-bold">
+                <div id="filter" class="w-25 rounded mx-1 p-2 font-3 fw-bold">
                     <div id="title" class=" text-center">
-                        <p class="font-3 fs-1">Filter</p>
+                        <p class="font-3 fs-1">Category</p>
                     </div>
 
                     <div id="body">
@@ -76,8 +76,7 @@
                                        for="one"
                                        :class="{
                                             'disabled-label' : filter_one !== true
-                                        }">At least one of the ingredients</label
-                                >
+                                       }">At least one of the ingredients</label>
                             </div>
                             <button class="btn btn-primary" type="submit">Filter</button>
                         </form>
@@ -103,11 +102,9 @@
     })
 
     watch(filter_all, value => {
-        console.log(filter_all.value);
         filterResults(filter_all.value, 'all');
     })
     watch(filter_one, value => {
-        console.log(filter_one.value);
         filterResults(filter_one.value, 'one');
     });
 
@@ -181,6 +178,9 @@
         height: fit-content;
         min-height: 90vh;
         background-color: #F9F4DA;
+    }
+    #filter {
+      background-color: #12B5E5;
     }
     i {
         margin: 0 25px;

@@ -1,8 +1,8 @@
 <template>
     <Head title="Login"/>
     <RightSideLayout>
-        <div class="bg bg-secondary fs-4 p-3 d-inline-block align-top content d-flex justify-content-center align-items-center" id="right-content">
-            <div id="register-container" class="bg bg-warning w-25 rounded d-flex align-items-center flex-column">
+        <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
+            <div id="register-container" class="bg bg-warning w-25 rounded d-flex align-items-center flex-column m-auto mt-5">
                 <form @submit.prevent="submit" class="w-100 mt-3">
                     <div class="mb-1 w-75 m-auto">
                         <label for="username" class="form-label font-2 fs-6">Username</label>
@@ -71,6 +71,7 @@
 <style scoped>
     #right-content {
         height: 100vh;
+        width: 95%;
     }
 
     #register-container {
