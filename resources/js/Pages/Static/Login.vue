@@ -4,7 +4,7 @@
         <div class="bg fs-4 p-3 d-inline-block align-top content" id="right-content">
             <div id="register-container" class="bg bg-warning w-25 rounded d-flex align-items-center flex-column m-auto mt-5">
                 <form @submit.prevent="submit"
-                      class="w-100 mt-3 h-25                                                                                                                              ">
+                      class="w-100 mt-3 h-25">
                     <div class="mb-4 w-75 m-auto border">
                         <label for="username" class="form-label font-2 fs-6">Username</label>
                         <input
@@ -22,6 +22,7 @@
                     <div class="mb-5 w-75 m-auto  border">
                         <label for="password" class="form-label font-2 fs-6">Password</label>
                         <input type="password" name="password" class="form-control font-2 fw-bold" id="password" v-model="form.password" placeholder="ex. password">
+                        <small class="error fs-7" v-if="errors.password">{{ errors.password }}</small>
                     </div>
                     <div class="mb-5 w-75 m-auto text-center">
                         <button class="btn btn-secondary font shadow" type="submit" :disabled="form.processing">Login</button>
@@ -39,7 +40,7 @@
 
 <script setup>
     import RightSideLayout from '../Template/RightSideLayout.vue';
-    import {computed, defineProps} from 'vue'
+    import {computed} from 'vue'
     import { useForm } from '@inertiajs/vue3'
     import { usePage } from '@inertiajs/vue3'
 

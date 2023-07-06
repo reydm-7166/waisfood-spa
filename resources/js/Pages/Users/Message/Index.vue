@@ -14,12 +14,12 @@
                         <!--          actual conversation          -->
 
                     <div id="chat" class="border-start border-warning border-3 w-75 mx-1 d-flex flex-column align-items-center pe-2">
-                        <div id="chat-header" class="w-100 rounded d-flex bg bg-warning d-flex align-items-center" v-if="(recipient)">
-                            <div id="back-btn" class="">
-                                <button class="btn btn-primary">Back</button>
+                        <div id="chat-header" class="w-100 rounded-end d-flex bg bg-warning d-flex align-items-center" v-if="(recipient)">
+                            <div id="recipient-image" class="">
+
                             </div>
                             <div id="people-details" class="mx-2">
-                                <p class="mt-2">{{ recipient.recipient.firstname + " " + recipient.recipient.lastname }}</p>
+                                <p class="mt-2">{{ recipient.firstname + " " + recipient.lastname }}</p>
                             </div>
                         </div>
 
@@ -38,16 +38,17 @@
                                 </div>
                             </div>
                         </div>
+                      <div class="w-100 pt-4">
                         <!--          send message              -->
-                        <form @submit.prevent="formSubmit" id="form-message" class="w-100 ms-2" v-if="(recipient)">
-                            <input type="text" name="chat_content"
-                                   v-model="chat_content"
-                                   id="chat-content"
-                                   placeholder="Send a Message ..."
-                                   class="font-2 form-control d-inline-block">
-                            <button class="btn btn-primary font-2 d-inline-block" :disabled="form.processing">Send</button>
+                        <form @submit.prevent="formSubmit" id="form-message" class="w-100 ms-2 mb-1" v-if="(recipient)">
+                          <input type="text" name="chat_content"
+                                 v-model="chat_content"
+                                 id="chat-content"
+                                 placeholder="Send a Message ..."
+                                 class="font-2 form-control d-inline-block">
+                          <button class="btn btn-primary font-2 d-inline-block" :disabled="form.processing">Send</button>
                         </form>
-
+                      </div>
 
                     </div>
                 </div>

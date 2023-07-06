@@ -19,10 +19,9 @@
                     <div id="name-message" class="rounded px-2">
                         <h5 class="mt-2 font-2 d-block">
                             <Link
-                                v-if="conversation.recipient"
                                 class="custom-link"
-                                :href="route('messages.show', { id: conversation.recipient.unique_id })">
-                                {{ `${conversation.recipient.firstname} ${conversation.recipient.lastname} `}}
+                                :href="route('messages.show', { id: conversation.unique_id })">
+                              {{ conversation.firstname }} {{conversation.lastname}}
                             </Link>
                         </h5>
                         <p class="mt-3 font-2 text-dark d-block fs-6 text-truncate">{{ conversation.content }}</p>
