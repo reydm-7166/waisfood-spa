@@ -8,7 +8,7 @@
                 </div>
                         <!--       messages main container         -->
                 <div id="messages" class="mt-1 rounded d-flex justify-content-center bg-light-blue pt-4 pb-2">
-                    <ConversationListLayout :conversation-list="conversationList" :user_session="user_session">
+                    <ConversationListLayout :conversation-list="conversationListonLeft" :user_session="user_session">
 
                     </ConversationListLayout>
                         <!--          actual conversation          -->
@@ -90,6 +90,7 @@
     // this is for 2 way binding
     let conversation = reactive(props.messagesConversation);
     let recipient = reactive(findRecipient());
+    let conversationListonLeft = reactive(arrangeConversationListByLatestMessage(props.conversationList))
 
     const form = useForm({
         chat_content: chat_content,
@@ -114,6 +115,16 @@
                 return conversation;
             }
         }
+    }
+
+    function arrangeConversationListByLatestMessage(unArrangeConversation)
+    {
+      let arranged = unArrangeConversation.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+      return arranged;
     }
     let first_message = props.messagesConversation ? ref(props.messagesConversation[0].id) : ref('');
 

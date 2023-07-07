@@ -20,13 +20,13 @@ class MessageServices {
     public function getConversationList() : array|Collection
     {
         return $this->message
-            ->select('messages.*', 'users.unique_id', 'users.firstname', 'users.lastname','users.id')
-            ->distinct('recipient_id')
-            ->join('users', 'messages.recipient_id', '=', 'users.id')
-            ->where('user_id', 2)
-            ->orderBy('messages.recipient_id')
-            ->orderBy('messages.created_at', 'desc')
-            ->get();
+                    ->select('messages.*', 'users.unique_id', 'users.firstname', 'users.lastname','users.id')
+                    ->distinct('recipient_id')
+                    ->join('users', 'messages.recipient_id', '=', 'users.id')
+                    ->where('user_id', Auth::user()->id)
+                    ->orderBy('messages.recipient_id')
+                    ->orderBy('messages.created_at', 'desc')
+                    ->get();
     }
 
     public function getMessageRecipient($unique_id)
