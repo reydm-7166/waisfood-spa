@@ -8,7 +8,7 @@
                 </div>
                         <!--       messages main container         -->
                 <div id="messages" class="mt-1 rounded d-flex justify-content-center bg-light-blue pt-4 pb-2">
-                    <ConversationListLayout :conversation-list="conversationListonLeft" :user_session="user_session">
+                    <ConversationListLayout :conversation-list="arrangedConversationList" :user_session="user_session">
 
                     </ConversationListLayout>
                         <!--          actual conversation          -->
@@ -88,9 +88,9 @@
     })
 
     // this is for 2 way binding
-    let conversation = reactive(props.messagesConversation);
+
     let recipient = reactive(findRecipient());
-    let conversationListonLeft = reactive(arrangeConversationListByLatestMessage(props.conversationList))
+    let arrangedConversationList = reactive(arrangeConversationListByLatestMessage(props.conversationList))
 
     const form = useForm({
         chat_content: chat_content,
@@ -104,6 +104,7 @@
             });
     }
     onMounted( () => {
+        let conversation = reactive(props.messagesConversation);
         listen(conversation)
     })
     function findRecipient()
