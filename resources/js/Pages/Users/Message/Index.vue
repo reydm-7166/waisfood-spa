@@ -88,7 +88,6 @@
     })
 
     // this is for 2 way binding
-
     let recipient = reactive(findRecipient());
     let arrangedConversationList = reactive(arrangeConversationListByLatestMessage(props.conversationList))
 
